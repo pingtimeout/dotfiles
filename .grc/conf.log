@@ -1,0 +1,52 @@
+# Logs (TRACE, DEBUG, INFO, WARN, ERROR)
+
+# DEBUG
+regexp=^.*DEBUG.*$
+colours="\033[38;5;153m"
+count=stop
+======
+# INFO
+regexp=^.*INFO.*$
+colours="\033[38;5;84m"
+count=stop
+======
+# WARN
+regexp=^.*WARN.*$
+colours="\033[38;5;222m"
+count=stop
+======
+# ERROR
+regexp=^.*ERROR.*$
+colours="\033[38;5;196m"
+count=stop
+======
+# com.voxmobili
+regexp=^.*com\.voxmobili.*$
+colours="\033[38;5;222m"
+count=stop
+======
+# com.libon
+regexp=^.*com\.libon.*$
+colours="\033[38;5;222m"
+count=stop
+======
+# com.orangevallee
+regexp=^.*com\.orangevallee.*$
+colours="\033[38;5;222m"
+count=stop
+
+## com.libon
+#regexp=^.*com\.libon.*$
+#colours="\033[1;37m"
+#count=stop
+#======
+## com.orangevallee
+#regexp=^.*com\.orangevallee.*$
+#colours="\033[1;37m"
+#count=stop
+#======
+## at
+#regexp=^.*at.*$
+#colours="\033[0;37m"
+#count=stop
+
