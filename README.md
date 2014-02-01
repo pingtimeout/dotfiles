@@ -8,4 +8,5 @@ Run these commands :
     ln -s ~/dotfiles/.grc/ ~/.grc
     ln -s ~/dotfiles/global-gitignore ~/.gitignore
     ln -s ~/dotfiles/gitconfig ~/.gitconfig
+    ln -s ~/dotfiles/zshrc ~/.zshrc
 
