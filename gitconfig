@@ -1,11 +1,11 @@
 [user]
-	email = pierre@pingtimeout.fr
-	name = Pierre Laporte
+    email = pierre@pingtimeout.fr
+    name = Pierre Laporte
 [push]
-	default = simple
+    default = simple
 [alias]
-	st = status
-	pr = pull --rebase
+    st = status
+    pr = pull --rebase
     ci = commit
     co = checkout
     br = branch
@@ -13,10 +13,10 @@
     ui = auto
 [core]
     editor = /usr/bin/vim
-    excludesfile = ~/.gitignore
+    excludesfile = /Users/plaporte/.gitignore
 [difftool "sourcetree"]
-	cmd = opendiff \"$LOCAL\" \"$REMOTE\"
-	path = 
+    cmd = opendiff \"$LOCAL\" \"$REMOTE\"
+    path = 
 [mergetool "sourcetree"]
-	cmd = /Applications/SourceTree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
-	trustExitCode = true
+    cmd = /Applications/SourceTree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
+    trustExitCode = true
