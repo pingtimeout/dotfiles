@@ -115,3 +115,7 @@ map <C-l> <C-w>l
 set wildmenu
 set wildmode=full
 
+" Increase command history size
+set history=200
+
+
