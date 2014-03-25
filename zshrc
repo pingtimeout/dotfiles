@@ -70,7 +70,8 @@ export PATH="/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin"
 # export SSH_KEY_PATH="~/.ssh/dsa_id"
 
 # Autojump stuff
-[[ -s `brew --prefix`/etc/autojump.sh ]] && . `brew --prefix`/etc/autojump.sh
+# - For Mac OSX
+which brew > /dev/null 2>&1 && [[ -s `brew --prefix`/etc/autojump.sh ]] && . `brew --prefix`/etc/autojump.sh
 
 autoload -U compinit; compinit
 
