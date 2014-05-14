@@ -118,4 +118,6 @@ set wildmode=full
 " Increase command history size
 set history=200
 
+" Start NERDTree automatically
+autocmd vimenter * if !argc() | NERDTree | endif
 
