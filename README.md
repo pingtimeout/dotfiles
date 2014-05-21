@@ -11,4 +11,7 @@ Run these commands :
     ln -s ~/dotfiles/zshrc ~/.zshrc
     ln -s ~/dotfiles/vimrc ~/.vimrc
     ln -s ~/dotfiles/vim ~/.vim
+    git submodule init
+    git submodule update
+
 
