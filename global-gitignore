@@ -53,3 +53,8 @@ Thumbs.db
 ##############
 target/
 
+###########################
+# Personal internal files #
+###########################
+env.partial.source
+
