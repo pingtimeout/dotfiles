@@ -52,7 +52,7 @@ source $ZSH/oh-my-zsh.sh
 # User configuration
 
 # Homebrew stuff : put /usr/local/bin in front of everything else in the default path
-export PATH="/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin"
+export PATH="/usr/local/sbin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin"
 
 # export MANPATH="/usr/local/man:$MANPATH"
 
@@ -78,6 +78,8 @@ autoload -U compinit; compinit
 # Source external environment
 if [ -f ~/env/env.source ]; then
     source ~/env/env.source
+else
+    echo "~/env/ folder not found, nothing was sourced"
 fi
 
 # Git prompt configuration
@@ -90,5 +92,21 @@ $ '
 
 if [ -d $HOME/.rvm/bin ]; then
     PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
+fi
+
+if [[ "$(uname)" == "Darwin" ]]; then
+    # We are on Mac OSX
+
+    # Autojump with homebrew
+    if [ -f `brew --prefix`/etc/autojump.sh ]; then
+        source `brew --prefix`/etc/autojump.sh
+    else
+        echo "You may want to install autojump from homebrew"
+    fi
+
+elif [ "$(expr substr $(uname -s) 1 5)" == "Linux" ]; then
+    # Do something under Linux platform
+elif [ "$(expr substr $(uname -s) 1 10)" == "MINGW32_NT" ]; then
+    # Do something under Windows NT platform
 fi
 
