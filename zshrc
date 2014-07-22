@@ -69,11 +69,13 @@ export PATH="/usr/local/sbin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin"
 # ssh
 # export SSH_KEY_PATH="~/.ssh/dsa_id"
 
-# Autojump stuff
-# - For Mac OSX
-which brew > /dev/null 2>&1 && [[ -s `brew --prefix`/etc/autojump.sh ]] && . `brew --prefix`/etc/autojump.sh
+# Enable ZSH autocomplete
+autoload -U compinit
+compinit
 
-autoload -U compinit; compinit
+# Enable Bash autocomplete compatibility
+autoload -U bashcompinit
+bashcompinit
 
 # Source external environment
 if [ -f ~/env/env.source ]; then
