@@ -89,7 +89,14 @@ export GIT_PS1_SHOWDIRTYSTATE=1
 export GIT_PS1_SHOWUNTRACKEDFILES=1
 export GIT_PS1_SHOWSTASHSTATE=1
 export GIT_PS1_SHOWUPSTREAM="verbose"
-export PS1='${ret_status}%{$fg_bold[green]%}%p %{$fg[white]%}%n@%M %{$fg[cyan]%}%c %{$fg_bold[blue]%}$(git_prompt_info)%{$fg_bold[blue]%} % %{$reset_color%}
+# CCM prompt configuration
+function ccmls()
+{
+    current_cluster=`[ -f ~/.ccm/CURRENT ] && echo -n '(' && cat ~/.ccm/CURRENT | tr -d '\n' && echo -n ')'`
+    number_of_clusters=`echo -n '(' && ls ~/.ccm/ | egrep -v 'CURRENT|repository' | wc -l | tr -d '\n ' ; echo ')'`
+    [ -n "${current_cluster}${number_of_clusters}" ] && echo -n "ccm:${current_cluster}${number_of_clusters}"
+}
+export PS1='${ret_status}%{$fg_bold[green]%}%p %{$fg[white]%}%n@%M %{$fg[cyan]%}%c %{$fg_bold[yellow]%}$(ccmls)%{$fg_bold[yellow]%} %{$fg_bold[blue]%}$(git_prompt_info)%{$fg_bold[blue]%} % %{$reset_color%}
 $ '
 
 if [ -d $HOME/.rvm/bin ]; then
