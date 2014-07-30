@@ -93,8 +93,9 @@ export GIT_PS1_SHOWUPSTREAM="verbose"
 function ccmls()
 {
     current_cluster=`[ -f ~/.ccm/CURRENT ] && echo -n '(' && cat ~/.ccm/CURRENT | tr -d '\n' && echo -n ')'`
-    number_of_clusters=`echo -n '(' && ls ~/.ccm/ | egrep -v 'CURRENT|repository' | wc -l | tr -d '\n ' ; echo ')'`
-    [ -n "${current_cluster}${number_of_clusters}" ] && echo -n "ccm:${current_cluster}${number_of_clusters}"
+    no_clusters=`echo -n '(' && ls ~/.ccm/ | egrep -v 'CURRENT|repository' | wc -l | tr -d '\n ' ; echo ')'`
+    no_active_cassandra_processes=`echo -n '(' && ps -ef | grep java | grep CassandraDaemon | wc -l | tr -d '\n ' ; echo ')'`
+    [ -n "${current_cluster}${no_clusters}" ] && echo -n "ccm:${current_cluster}${no_clusters}${no_active_cassandra_processes}"
 }
 export PS1='${ret_status}%{$fg_bold[green]%}%p %{$fg[white]%}%n@%M %{$fg[cyan]%}%c %{$fg_bold[yellow]%}$(ccmls)%{$fg_bold[yellow]%} %{$fg_bold[blue]%}$(git_prompt_info)%{$fg_bold[blue]%} % %{$reset_color%}
 $ '
