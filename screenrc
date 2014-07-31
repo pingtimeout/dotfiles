@@ -1,0 +1,25 @@
+# Setup status bar
+caption string "%?%F%{= Bk}%? %C%A %D %d-%m-%Y %{= kB} %t%= %?%F%{= Bk}%:%{= wk}%? %n "
+hardstatus off
+hardstatus alwayslastline
+hardstatus string '%{= kG}[ %{G}%H %{g}][%= %{= kw}%?%-Lw%?%{r}(%{W}%n*%f%t%?(%u)%?%{r})%{w}%?%+Lw%?%?%= %{g}][%{B} %d/%m %{W}%c %{g}]'
+
+# Load .bashrc and stuff in each tab
+defshell -bash # dash makes it a login shell
+
+# Screen is only nice with a big scroll buffer
+defscrollback 5000
+term screen-256color
+attrcolor b ".I" # allow bold colors - necessary for some reason
+termcapinfo xterm 'Co#256:AB=\E[48;5;%dm:AF=\E[38;5;%dm' # tell screen how to set colors. AB = background, AF=foreground
+defbce on # use current bg color for erased chars
+startup_message off
+
+# Use the scroll bar of mintty
+termcapinfo xterm* ti@:te@
+
+# Use ALT-Left, ALT-Right, CTRL-Tab and CTRL-Maj-Tab to navigate between the tabs
+bindkey "^[[1;3D" prev
+bindkey "^[[1;3C" next
+bindkey "^[[1;5I" next
+bindkey "^[[1;6I" prev
