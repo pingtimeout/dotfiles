@@ -4,10 +4,16 @@
 [push]
     default = simple
 [alias]
+    ec = config --global --edit
     st = status
     pr = pull --rebase
+    up = !git pull --rebase --prune $@ && git submodule update --init --recursive
     ci = commit
     co = checkout
+    cob = checkout -b
+    save = !git add -A && git commit -m 'SAVEPOINT'
+    wip = !git add -u && git commit -m "WIP"
+    wipe = !git add -A && git commit -qm 'WIPE SAVEPOINT' && git reset HEAD~1 --hard
     br = branch
     tree = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --all
 [color]
