@@ -57,4 +57,9 @@ target/
 # Personal internal files #
 ###########################
 env.partial.source
+*.ssh_config
 
+##########
+# Python #
+##########
+*.pyc
