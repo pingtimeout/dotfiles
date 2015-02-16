@@ -7,6 +7,7 @@
     ec = config --global --edit
     st = status
     pr = pull --rebase
+    dc = diff --cached
     up = !git pull --rebase --prune $@ && git submodule update --init --recursive
     ci = commit
     co = checkout
@@ -16,6 +17,7 @@
     wipe = !git add -A && git commit -qm 'WIPE SAVEPOINT' && git reset HEAD~1 --hard
     br = branch
     tree = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --all
+    pushit = !open "spotify:track:0GugYsbXWlfLOgsmtsdxzg" && git push
 [color]
     ui = auto
 [core]
@@ -29,3 +31,5 @@
 	trustExitCode = true
 [help]
     autocorrect = 1
+[merge]
+	tool = vimdiff
