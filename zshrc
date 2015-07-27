@@ -84,6 +84,9 @@ else
     echo "~/env/ folder not found, nothing was sourced"
 fi
 
+alias ll='gls -lh --color'
+alias zcat='gzcat'
+
 # Git prompt configuration
 export GIT_PS1_SHOWDIRTYSTATE=1
 export GIT_PS1_SHOWUNTRACKEDFILES=1
