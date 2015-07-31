@@ -84,8 +84,8 @@ else
     echo "~/env/ folder not found, nothing was sourced"
 fi
 
-alias ll='gls -lh --color'
-alias zcat='gzcat'
+PATH="/usr/local/opt/coreutils/libexec/gnubin:$PATH"
+MANPATH="/usr/local/opt/coreutils/libexec/gnuman:$MANPATH"
 
 # Git prompt configuration
 export GIT_PS1_SHOWDIRTYSTATE=1
