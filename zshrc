@@ -123,3 +123,4 @@ elif [ "$(expr substr $(uname -s) 1 10)" == "MINGW32_NT" ]; then
     # Do something under Windows NT platform
 fi
 
+alias ll='ls -lh --color'
