@@ -95,11 +95,11 @@ set tabstop=4 shiftwidth=4 softtabstop=4 expandtab
 " Shortcut to rapidly toggle `set list`
 nmap <leader>l :set list!<CR>
  
-" Use the same symbols as TextMate for tabstops and EOLs
-set listchars=tab:▸\ ,eol:¬
+" Mark trailing spaces by a dot, tabs with a > sign, and eol with $
+set listchars=trail:.,extends:>,tab:>\ ,eol:$
 
-" Default colorscheme : evening is better
-colorscheme evening
+" Default colorscheme : elflord is better than evening on remote terminals
+colorscheme elflord
 
 " Use Command-[ or ] for indentation {{{
 nmap <D-[> <<
