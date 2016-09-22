@@ -99,7 +99,7 @@ function ccmls()
     then
         current_cluster=`[ -f ~/.ccm/CURRENT ] && echo -n '(' && cat ~/.ccm/CURRENT | tr -d '\n' && echo -n ')'`
         no_clusters=`echo -n '(' && ls ~/.ccm/ | egrep -v 'CURRENT|repository' | wc -l | tr -d '\n ' ; echo ')'`
-        no_active_cassandra_processes=`echo -n '(' && ps -ef | grep java | grep CassandraDaemon | wc -l | tr -d '\n ' ; echo ')'`
+        no_active_cassandra_processes=`echo -n '(' && ps -ef | grep java | egrep "(CassandraDaemon|DseModule)" | wc -l | tr -d '\n ' ; echo ')'`
         [ -n "${current_cluster}${no_clusters}" ] && echo -n "ccm:${current_cluster}${no_clusters}${no_active_cassandra_processes}"
     fi
 }
