@@ -106,6 +106,18 @@ function ccmls()
 export PS1='${ret_status}%{$fg_bold[green]%}%p %{$fg[white]%}%n@%M %{$fg[cyan]%}%c %{$fg_bold[yellow]%}$(ccmls)%{$fg_bold[yellow]%} %{$fg_bold[blue]%}$(git_prompt_info)%{$fg_bold[blue]%} % %{$reset_color%}
 $ '
 
+up () {
+    COUNTER=$1
+    while [[ $COUNTER -gt 0 ]]
+    do
+        UP="${UP}../"
+        COUNTER=$(( $COUNTER -1 ))
+    done
+    echo "cd $UP"
+    cd $UP
+    UP=''
+}
+
 if [ -d $HOME/bin ]; then
     PATH=$PATH:$HOME/bin
 fi
