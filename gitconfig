@@ -16,6 +16,7 @@
     br = branch
     tree = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --all
     pushit = !open "spotify:track:0GugYsbXWlfLOgsmtsdxzg" && git push
+	it = !git init && git commit -m \"Initial commit\" --allow-empty
 [color]
     ui = auto
 [core]
