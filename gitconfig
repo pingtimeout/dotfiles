@@ -32,3 +32,6 @@
     autocorrect = 1
 [merge]
 	tool = vimdiff
+[diff "gzip"]
+    binary = true
+    textconv = /usr/bin/gzcat
