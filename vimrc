@@ -123,3 +123,5 @@ set history=200
 " Start NERDTree automatically
 autocmd vimenter * if !argc() | NERDTree | endif
 
+" Configure LanguageTool
+let g:languagetool_jar='$HOME/env/opt/LanguageTool-3.5/languagetool-commandline.jar'

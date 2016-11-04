@@ -25,3 +25,6 @@
 [submodule "vim/bundle/vim-asciidoc"]
 	path = vim/bundle/vim-asciidoc
 	url = https://github.com/asciidoc/vim-asciidoc.git
+[submodule "vim/bundle/vim-languagetool"]
+	path = vim/bundle/vim-languagetool
+	url = https://github.com/vim-scripts/LanguageTool.git
