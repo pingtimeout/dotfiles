@@ -98,8 +98,8 @@ nmap <leader>l :set list!<CR>
 " Mark trailing spaces by a dot, tabs with a > sign, and eol with $
 set listchars=trail:.,extends:>,tab:>\ ,eol:$
 
-" Default colorscheme : elflord is better than evening on remote terminals
-colorscheme elflord
+" Default colorscheme : slate is slightly better than elflord on remote terminals
+colorscheme slate
 
 " Use Command-[ or ] for indentation {{{
 nmap <D-[> <<
