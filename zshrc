@@ -143,3 +143,9 @@ elif [[ "$(expr substr $(uname -s) 1 10)" == "MINGW32_NT" ]]; then
 fi
 
 alias ll='ls -lh --color'
+
+# Install Python virtualenv wrapper for better Python library management
+# See https://virtualenvwrapper.readthedocs.io/en/latest/
+source /usr/local/bin/virtualenvwrapper.sh
+workon datastax
+
