@@ -28,3 +28,6 @@
 [submodule "vim/bundle/vim-languagetool"]
 	path = vim/bundle/vim-languagetool
 	url = https://github.com/vim-scripts/LanguageTool.git
+[submodule "vim/bundle/confluencewiki"]
+	path = vim/bundle/confluencewiki
+	url = https://github.com/vim-scripts/confluencewiki.vim.git
