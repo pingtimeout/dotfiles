@@ -1,0 +1,22 @@
+# Jepsen history operations
+
+# start,invoke
+regexp=^.*(type=start|type=invoke).*$
+colours="\033[38;5;153m"
+count=stop
+======
+# ok
+regexp=^.*type=ok.*$
+colours="\033[38;5;84m"
+count=stop
+======
+# end
+regexp=^.*type=end.*$
+colours="\033[38;5;222m"
+count=stop
+======
+# fail
+regexp=^.*type=fail.*$
+colours="\033[38;5;196m"
+count=stop
+
