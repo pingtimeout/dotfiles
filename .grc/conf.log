@@ -31,13 +31,7 @@ regexp=^.*com\.datastax\..*$
 colours="\033[1;37m"
 count=stop
 #======
-## com.orangevallee
-#regexp=^.*com\.orangevallee.*$
-#colours="\033[1;37m"
-#count=stop
-#======
 ## at
 #regexp=^.*at.*$
 #colours="\033[0;37m"
 #count=stop
-
