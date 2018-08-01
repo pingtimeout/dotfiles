@@ -25,6 +25,3 @@
 [submodule "vim/bundle/vim-languagetool"]
 	path = vim/bundle/vim-languagetool
 	url = https://github.com/vim-scripts/LanguageTool.git
-[submodule "vim/bundle/gnuplot.vim"]
-	path = vim/bundle/gnuplot.vim
-	url = https://github.com/vim-scripts/gnuplot.vim.git
