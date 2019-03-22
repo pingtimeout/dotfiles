@@ -1,3 +1,6 @@
+# Profile startup to find long running apps
+#zmodload zsh/zprof
+
 # Path to your oh-my-zsh configuration.
 ZSH=$HOME/.oh-my-zsh
 
@@ -45,7 +48,7 @@ ZSH_THEME="robbyrussell"
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
-plugins=(git ruby autojump rvm mvn vagrant)
+plugins=(git autojump)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -70,8 +73,13 @@ export PATH="/usr/local/sbin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin"
 # export SSH_KEY_PATH="~/.ssh/dsa_id"
 
 # Enable ZSH autocomplete
-autoload -U compinit
-compinit
+autoload -Uz compinit
+
+for dump in ~/.zcompdump(N.mh+24); do
+  compinit
+done
+
+compinit -C
 
 # Enable Bash autocomplete compatibility
 autoload -U bashcompinit
@@ -122,9 +130,10 @@ if [ -d $HOME/bin ]; then
     PATH=$PATH:$HOME/bin
 fi
 
-if [ -d $HOME/.rvm/bin ]; then
-    PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
-fi
+# Ruby Version Manager (RVM)
+#if [ -d $HOME/.rvm/bin ]; then
+#    PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
+#fi
 
 if [[ "$(uname)" == "Darwin" ]]; then
     # We are on Mac OSX
@@ -146,6 +155,8 @@ alias ll='ls -lh --color'
 
 # Install Python virtualenv wrapper for better Python library management
 # See https://virtualenvwrapper.readthedocs.io/en/latest/
-source /usr/local/bin/virtualenvwrapper.sh
-workon datastax
+#source /usr/local/bin/virtualenvwrapper.sh
+#workon python3
 
+# Complete profile
+#zprof
