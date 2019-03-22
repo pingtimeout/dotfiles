@@ -99,7 +99,7 @@ nmap <leader>l :set list!<CR>
 set listchars=trail:.,extends:>,tab:>\ ,eol:$
 
 " Default colorscheme : slate is slightly better than elflord on remote terminals
-colorscheme slate
+colorscheme desert
 
 " Use Command-[ or ] for indentation {{{
 nmap <D-[> <<
@@ -120,8 +120,30 @@ set wildmode=full
 " Increase command history size
 set history=200
 
+" Display relative line numbers before/after cursor
+" Display absolute line number at cursor
+set number
+set relativenumber
+
 " Start NERDTree automatically
-autocmd vimenter * if !argc() | NERDTree | endif
+" 2018-05-22 do not start NERD tree automatically since it takes a long time
+" to scan $HOME when MacVim is started from Alfred
+"autocmd vimenter * if !argc() | NERDTree | endif
+
+" Enable Fira Code in MacVim
+if has("gui_running")
+  set macligatures
+  set guifont=Fira\ Code:h12
+endif
 
 " Configure LanguageTool
 let g:languagetool_jar='$HOME/env/opt/LanguageTool-3.5/languagetool-commandline.jar'
+
+" Custom syntax files for unsupported filetypes
+if exists("did_load_filetypes")
+    finish
+endif
+augroup filetypedetect
+    au! BufNewFile,BufRead *.plt,*.gnuplot setf gnuplot
+augroup END
+
