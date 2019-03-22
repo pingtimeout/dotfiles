@@ -1,22 +1,22 @@
-# Jepsen history operations
+# Jepsen techscreen history operations
+# Usage: grc -c conf.jepsen cat histories/public/one.txt
 
-# start,invoke
-regexp=^.*(type=start|type=invoke).*$
-colours="\033[38;5;153m"
-count=stop
+regexp=module=write
+colours="\033[38;5;130m"
 ======
-# ok
-regexp=^.*type=ok.*$
-colours="\033[38;5;84m"
-count=stop
+regexp=module=read
+colours="\033[38;5;229m"
 ======
-# end
-regexp=^.*type=end.*$
-colours="\033[38;5;222m"
-count=stop
+regexp=module=topology
+colours="\033[38;5;207m"
 ======
-# fail
-regexp=^.*type=fail.*$
-colours="\033[38;5;196m"
-count=stop
+regexp=module=live_nodes
+colours="\033[38;5;80m"
+======
+regexp=type=ok
+colours="\033[38;5;2m"
+======
+regexp=type=fail
+colours="\033[38;5;1m"
+======
 
