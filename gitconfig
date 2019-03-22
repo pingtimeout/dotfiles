@@ -2,19 +2,16 @@
     email = pierre@pingtimeout.fr
     name = Pierre Laporte
 [push]
-    default = simple
+	default = current
 [alias]
     ec = config --global --edit
     st = status
     pr = pull --rebase
     dc = diff --cached
     up = !git pull --rebase --prune $@ && git submodule update --init --recursive
-    ci = commit
-    co = checkout
-    cob = checkout -b
     wip = !git add -u && git commit -m "WIP"
-    br = branch
-    tree = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --all
+    delete-merged-branches = !git branch --merged | egrep -v '^\\*|master' | xargs git branch -d
+    tree = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset %C(cyan)%GS%Creset' --abbrev-commit --all
     pushit = !open "spotify:track:0GugYsbXWlfLOgsmtsdxzg" && git push
 	it = !git init && git commit -m \"Initial commit\" --allow-empty
 [color]
@@ -35,3 +32,7 @@
 [diff "gzip"]
     binary = true
     textconv = /usr/bin/gzcat
+[rebase]
+	autoStash = true
+[commit]
+	gpgsign = true
