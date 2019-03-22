@@ -152,11 +152,30 @@ elif [[ "$(expr substr $(uname -s) 1 10)" == "MINGW32_NT" ]]; then
 fi
 
 alias ll='ls -lh --color'
+alias diff='colordiff'
 
 # Install Python virtualenv wrapper for better Python library management
 # See https://virtualenvwrapper.readthedocs.io/en/latest/
 #source /usr/local/bin/virtualenvwrapper.sh
 #workon python3
+
+# added by travis gem
+[ -f /Users/plaporte/.travis/travis.sh ] && source /Users/plaporte/.travis/travis.sh
+
+# Yubikey stuff
+export "GPG_TTY=$(tty)"
+export "SSH_AUTH_SOCK=${HOME}/.gnupg/S.gpg-agent.ssh"
+
+# Node version manager (nvm) stuff
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" --no-use # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
+# Start GPG agent if it is not already running
+/usr/local/MacGPG2/bin/gpgconf --launch gpg-agent
+
+# Use the pyenv provided python
+eval "$(pyenv init -)"
 
 # Complete profile
 #zprof
