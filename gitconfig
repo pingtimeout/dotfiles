@@ -1,6 +1,7 @@
 [user]
     email = pierre@pingtimeout.fr
     name = Pierre Laporte
+	signingkey = 9C21DBC34FBDB99E
 [push]
 	default = current
 [alias]
