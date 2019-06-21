@@ -130,6 +130,10 @@ set relativenumber
 " to scan $HOME when MacVim is started from Alfred
 "autocmd vimenter * if !argc() | NERDTree | endif
 
+" Enable modelines for per-file vim settings overrides
+set modeline
+set modelines=5
+
 " Enable Fira Code in MacVim
 if has("gui_running")
   set macligatures

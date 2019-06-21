@@ -69,9 +69,6 @@ export PATH="/usr/local/sbin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin"
 # Compilation flags
 # export ARCHFLAGS="-arch x86_64"
 
-# ssh
-# export SSH_KEY_PATH="~/.ssh/dsa_id"
-
 # Enable ZSH autocomplete
 autoload -Uz compinit
 
@@ -154,28 +151,24 @@ fi
 alias ll='ls -lh --color'
 alias diff='colordiff'
 
-# Install Python virtualenv wrapper for better Python library management
-# See https://virtualenvwrapper.readthedocs.io/en/latest/
-#source /usr/local/bin/virtualenvwrapper.sh
-#workon python3
+# Only load this stuff if we are running iterm, aka not csshX
+if `echo $TERM_PROGRAM | grep iTerm.app >/dev/null`
+then
+    # Yubikey stuff
+    export "GPG_TTY=$(tty)"
+    export "SSH_AUTH_SOCK=${HOME}/.gnupg/S.gpg-agent.ssh"
 
-# added by travis gem
-[ -f /Users/plaporte/.travis/travis.sh ] && source /Users/plaporte/.travis/travis.sh
+    # Node version manager (nvm) stuff
+    export NVM_DIR="$HOME/.nvm"
+    [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" --no-use # This loads nvm
+    [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
-# Yubikey stuff
-export "GPG_TTY=$(tty)"
-export "SSH_AUTH_SOCK=${HOME}/.gnupg/S.gpg-agent.ssh"
+    # Start GPG agent if it is not already running
+    /usr/local/MacGPG2/bin/gpgconf --launch gpg-agent
 
-# Node version manager (nvm) stuff
-export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" --no-use # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
-
-# Start GPG agent if it is not already running
-/usr/local/MacGPG2/bin/gpgconf --launch gpg-agent
-
-# Use the pyenv provided python
-eval "$(pyenv init -)"
+    # Use the pyenv provided python
+    eval "$(pyenv init -)"
+fi
 
 # Complete profile
 #zprof
