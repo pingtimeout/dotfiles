@@ -172,3 +172,7 @@ fi
 
 # Complete profile
 #zprof
+
+#THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
+export SDKMAN_DIR="/Users/plaporte/.sdkman"
+[[ -s "/Users/plaporte/.sdkman/bin/sdkman-init.sh" ]] && source "/Users/plaporte/.sdkman/bin/sdkman-init.sh"
