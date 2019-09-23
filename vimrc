@@ -1,10 +1,3 @@
-
-" Enable pathogen before anything else
-"call pathogen#runtime_append_all_bundles()
-"call pathogen#helptags()
-runtime bundle/vim-pathogen/autoload/pathogen.vim
-execute pathogen#infect()
-
 " When started as "evim", evim.vim will already have done these settings.
 if v:progname =~? "evim"
   finish
@@ -98,14 +91,43 @@ nmap <leader>l :set list!<CR>
 " Mark trailing spaces by a dot, tabs with a > sign, and eol with $
 set listchars=trail:.,extends:>,tab:>\ ,eol:$
 
+" ------------------------------------------------------------------------------
+"                             PLA Custom config
+" ------------------------------------------------------------------------------
+
+" vim.plug seems to be a better package manager
+call plug#begin('~/.vim/plugged')
+Plug 'habamax/vim-asciidoctor'                          " Fast syntax highlighter for asciidoc files, including folding
+Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' } " View directory tree with :NERDTree
+Plug 'dpelle/vim-LanguageTool'                          " Check language with :LanguageToolCheck and :LanguageToolClear
+Plug 'godlygeek/tabular'                                " Tabularise content with :Tabularize /,
+Plug 'plasticboy/vim-markdown'                          " Markdown support in vim, including folding with zo zO and others
+Plug 'tpope/vim-surround'                               " Surround regions of text with csiW'
+call plug#end()
+
+" ---  vim-asciidoctor configuration ---
+let g:asciidoctor_executable = 'asciidoctor'
+let g:asciidoctor_extensions = ['asciidoctor-diagram']
+let g:asciidoctor_pdf_executable = 'asciidoctor-pdf'
+let g:asciidoctor_pdf_extensions = ['asciidoctor-diagram']
+let g:asciidoctor_pandoc_executable = 'pandoc'
+let g:asciidoctor_folding = 1
+let g:asciidoctor_fold_options = 1
+fun! AsciidoctorMappings()
+	nnoremap <buffer> <leader>oo :AsciidoctorOpenRAW<CR>
+	nnoremap <buffer> <leader>op :AsciidoctorOpenPDF<CR>
+	nnoremap <buffer> <leader>oh :AsciidoctorOpenHTML<CR>
+	nnoremap <buffer> <leader>ch :Asciidoctor2HTML<CR>
+	nnoremap <buffer> <leader>cp :Asciidoctor2PDF<CR>
+endfun
+augroup asciidoctor
+	au!
+	au BufEnter *.adoc,*.asciidoc call AsciidoctorMappings()
+augroup END
+" --- /vim-asciidoctor configuration ---
+
 " Default colorscheme : slate is slightly better than elflord on remote terminals
 colorscheme desert
-
-" Use Command-[ or ] for indentation {{{
-nmap <D-[> <<
-nmap <D-]> >>
-vmap <D-[> <gv
-vmap <D-]> >gv
 
 " Use Control-hjkl to switch between windows
 map <C-h> <C-w>h
@@ -150,4 +172,3 @@ endif
 augroup filetypedetect
     au! BufNewFile,BufRead *.plt,*.gnuplot setf gnuplot
 augroup END
-
