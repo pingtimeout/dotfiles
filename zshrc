@@ -57,8 +57,6 @@ source $ZSH/oh-my-zsh.sh
 # Homebrew stuff : put /usr/local/bin in front of everything else in the default path
 export PATH="/usr/local/sbin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin"
 
-# export MANPATH="/usr/local/man:$MANPATH"
-
 # # Preferred editor for local and remote sessions
 # if [[ -n $SSH_CONNECTION ]]; then
 #   export EDITOR='vim'
@@ -66,17 +64,14 @@ export PATH="/usr/local/sbin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin"
 #   export EDITOR='mvim'
 # fi
 
-# Compilation flags
-# export ARCHFLAGS="-arch x86_64"
-
 # Enable ZSH autocomplete
-autoload -Uz compinit
-
-for dump in ~/.zcompdump(N.mh+24); do
-  compinit
-done
-
-compinit -C
+#autoload -Uz compinit
+#
+#for dump in ~/.zcompdump(N.mh+24); do
+#  compinit
+#done
+#
+#compinit -C
 
 # Enable Bash autocomplete compatibility
 autoload -U bashcompinit
@@ -90,7 +85,19 @@ else
 fi
 
 PATH="/usr/local/opt/coreutils/libexec/gnubin:$PATH"
-MANPATH="/usr/local/opt/coreutils/libexec/gnuman:$MANPATH"
+PATH="/usr/local/opt/findutils/libexec/gnubin:$PATH"
+PATH="/usr/local/opt/gnu-getopt/bin:$PATH"
+PATH="/usr/local/opt/gnu-indent/libexec/gnubin:$PATH"
+PATH="/usr/local/opt/gnu-sed/libexec/gnubin:$PATH"
+PATH="/usr/local/opt/gnu-tar/libexec/gnubin:$PATH"
+PATH="/usr/local/opt/grep/libexec/gnubin:$PATH"
+
+MANPATH="/usr/local/opt/coreutils/libexec/gnuman:$PATH"
+MANPATH="/usr/local/opt/findutils/libexec/gnuman:$PATH"
+MANPATH="/usr/local/opt/gnu-indent/libexec/gnuman:$PATH"
+MANPATH="/usr/local/opt/gnu-sed/libexec/gnuman:$PATH"
+MANPATH="/usr/local/opt/gnu-tar/libexec/gnuman:$PATH"
+MANPATH="/usr/local/opt/grep/libexec/gnuman:$PATH"
 
 # Git prompt configuration
 export GIT_PS1_SHOWDIRTYSTATE=1
@@ -113,11 +120,6 @@ up () {
 if [ -d $HOME/bin ]; then
     PATH=$PATH:$HOME/bin
 fi
-
-# Ruby Version Manager (RVM)
-#if [ -d $HOME/.rvm/bin ]; then
-#    PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
-#fi
 
 if [[ "$(uname)" == "Darwin" ]]; then
     # We are on Mac OSX
