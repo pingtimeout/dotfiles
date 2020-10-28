@@ -8,7 +8,7 @@ ZSH=$HOME/.oh-my-zsh
 # Look in ~/.oh-my-zsh/themes/
 # Optionally, if you set this to "random", it'll load a random theme each
 # time that oh-my-zsh is loaded.
-ZSH_THEME="robbyrussell"
+ZSH_THEME="honukai"
 
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
@@ -97,19 +97,6 @@ export GIT_PS1_SHOWDIRTYSTATE=1
 export GIT_PS1_SHOWUNTRACKEDFILES=1
 export GIT_PS1_SHOWSTASHSTATE=1
 export GIT_PS1_SHOWUPSTREAM="verbose"
-# CCM prompt configuration
-function ccmls()
-{
-    if [ -d ~/.ccm ]
-    then
-        current_cluster=`[ -f ~/.ccm/CURRENT ] && echo -n '(' && cat ~/.ccm/CURRENT | tr -d '\n' && echo -n ')'`
-        no_clusters=`echo -n '(' && ls ~/.ccm/ | egrep -v 'CURRENT|repository' | wc -l | tr -d '\n ' ; echo ')'`
-        no_active_cassandra_processes=`echo -n '(' && ps -ef | grep java | egrep "(CassandraDaemon|DseModule)" | wc -l | tr -d '\n ' ; echo ')'`
-        [ -n "${current_cluster}${no_clusters}" ] && echo -n "ccm:${current_cluster}${no_clusters}${no_active_cassandra_processes}"
-    fi
-}
-export PS1='${ret_status}%{$fg_bold[green]%}%p %{$fg[white]%}%n@%M %{$fg[cyan]%}%c %{$fg_bold[yellow]%}$(ccmls)%{$fg_bold[yellow]%} %{$fg_bold[blue]%}$(git_prompt_info)%{$fg_bold[blue]%} % %{$reset_color%}
-$ '
 
 up () {
     COUNTER=$1
