@@ -16,10 +16,11 @@
     pushit = !open "spotify:track:0GugYsbXWlfLOgsmtsdxzg" && git push
 	it = !git init && git commit -m \"Initial commit\" --allow-empty
 [color]
-    ui = auto
+	ui = true
 [core]
     editor = /usr/bin/vim
 	excludesfile = /Users/plaporte/.gitignore
+	pager = diff-so-fancy | less --tabs=4 -RFX
 [difftool "sourcetree"]
 	cmd = opendiff \"$LOCAL\" \"$REMOTE\"
 	path = 
@@ -37,3 +38,21 @@
 	autoStash = true
 [commit]
 	gpgsign = true
+[interactive]
+	diffFilter = diff-so-fancy --patch
+[color "diff-highlight"]
+	oldNormal = red bold
+	oldHighlight = red bold 52
+	newNormal = green bold
+	newHighlight = green bold 22
+[color "diff"]
+	meta = 11
+	frag = magenta bold
+	func = 146 bold
+	commit = yellow bold
+	old = red bold
+	new = green bold
+	whitespace = red reverse
+[diff-so-fancy]
+	markEmptyLines = true
+	stripLeadingSymbols = true
