@@ -6,6 +6,7 @@ ln -sf ~/dotfiles/.grc/ ~/.grc
 ln -sf ~/dotfiles/global-gitignore ~/.gitignore
 ln -sf ~/dotfiles/gitconfig ~/.gitconfig
 ln -sf ~/dotfiles/zshrc ~/.zshrc
+ln -sf ~/dotfiles/zpreztorc ~/.zpreztorc
 ln -sf ~/dotfiles/screenrc ~/.screenrc
 ln -sf ~/dotfiles/vimrc ~/.vimrc
 

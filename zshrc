@@ -1,113 +1,35 @@
-# Profile startup to find long running apps
-#zmodload zsh/zprof
+# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
+# Initialization code that may require console input (password prompts, [y/n]
+# confirmations, etc.) must go above this block; everything else may go below.
+if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
+  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+fi
 
-# Path to your oh-my-zsh configuration.
-ZSH=$HOME/.oh-my-zsh
-
-# Set name of the theme to load.
-# Look in ~/.oh-my-zsh/themes/
-# Optionally, if you set this to "random", it'll load a random theme each
-# time that oh-my-zsh is loaded.
-ZSH_THEME="powerlevel9k/powerlevel9k"
-POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(dir rbenv vcs)
-POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(status background_jobs history time)
-POWERLEVEL9K_PROMPT_ON_NEWLINE=true
-
-# Example aliases
-# alias zshconfig="mate ~/.zshrc"
-# alias ohmyzsh="mate ~/.oh-my-zsh"
-
-# Set to this to use case-sensitive completion
-# CASE_SENSITIVE="true"
-
-# Uncomment this to disable bi-weekly auto-update checks
-# DISABLE_AUTO_UPDATE="true"
-
-# Uncomment to change how often before auto-updates occur? (in days)
-# export UPDATE_ZSH_DAYS=13
-
-# Uncomment following line if you want to disable colors in ls
-# DISABLE_LS_COLORS="true"
-
-# Uncomment following line if you want to disable autosetting terminal title.
-# DISABLE_AUTO_TITLE="true"
-
-# Uncomment following line if you want to disable command autocorrection
-# DISABLE_CORRECTION="true"
-
-# Uncomment following line if you want red dots to be displayed while waiting for completion
-# COMPLETION_WAITING_DOTS="true"
-
-# Uncomment following line if you want to disable marking untracked files under
-# VCS as dirty. This makes repository status check for large repositories much,
-# much faster.
-# DISABLE_UNTRACKED_FILES_DIRTY="true"
-
-# Uncomment following line if you want to  shown in the command execution time stamp 
-# in the history command output. The optional three formats: "mm/dd/yyyy"|"dd.mm.yyyy"|
-# yyyy-mm-dd
-# HIST_STAMPS="mm/dd/yyyy"
-
-# Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
-# Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
-# Example format: plugins=(rails git textmate ruby lighthouse)
-plugins=(git autojump)
-
-source $ZSH/oh-my-zsh.sh
-
-# User configuration
-
-# Homebrew stuff : put /usr/local/bin in front of everything else in the default path
-export PATH="/usr/local/sbin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin"
-
-# # Preferred editor for local and remote sessions
-# if [[ -n $SSH_CONNECTION ]]; then
-#   export EDITOR='vim'
-# else
-#   export EDITOR='mvim'
-# fi
-
-# Enable ZSH autocomplete
-#autoload -Uz compinit
 #
-#for dump in ~/.zcompdump(N.mh+24); do
-#  compinit
-#done
+# Executes commands at the start of an interactive session.
 #
-#compinit -C
+# Authors:
+#   Sorin Ionescu <sorin.ionescu@gmail.com>
+#
 
-# Enable Bash autocomplete compatibility
-autoload -U bashcompinit
-bashcompinit
+# Source Prezto.
+if [[ -s "${ZDOTDIR:-$HOME}/.zprezto/init.zsh" ]]; then
+  source "${ZDOTDIR:-$HOME}/.zprezto/init.zsh"
+fi
 
-# Source external environment
+# Customize to your needs...
+
+# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
+[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+
+# Source personal files
 if [ -f ~/env/env.source ]; then
     source ~/env/env.source
 else
     echo "~/env/ folder not found, nothing was sourced"
 fi
 
-PATH="/usr/local/opt/coreutils/libexec/gnubin:$PATH"
-PATH="/usr/local/opt/findutils/libexec/gnubin:$PATH"
-PATH="/usr/local/opt/gnu-getopt/bin:$PATH"
-PATH="/usr/local/opt/gnu-indent/libexec/gnubin:$PATH"
-PATH="/usr/local/opt/gnu-sed/libexec/gnubin:$PATH"
-PATH="/usr/local/opt/gnu-tar/libexec/gnubin:$PATH"
-PATH="/usr/local/opt/grep/libexec/gnubin:$PATH"
-
-MANPATH="/usr/local/opt/coreutils/libexec/gnuman:$PATH"
-MANPATH="/usr/local/opt/findutils/libexec/gnuman:$PATH"
-MANPATH="/usr/local/opt/gnu-indent/libexec/gnuman:$PATH"
-MANPATH="/usr/local/opt/gnu-sed/libexec/gnuman:$PATH"
-MANPATH="/usr/local/opt/gnu-tar/libexec/gnuman:$PATH"
-MANPATH="/usr/local/opt/grep/libexec/gnuman:$PATH"
-
-# Git prompt configuration
-export GIT_PS1_SHOWDIRTYSTATE=1
-export GIT_PS1_SHOWUNTRACKEDFILES=1
-export GIT_PS1_SHOWSTASHSTATE=1
-export GIT_PS1_SHOWUPSTREAM="verbose"
-
+# Define the `up` command to move `n` directories higher
 up () {
     COUNTER=$1
     while [[ $COUNTER -gt 0 ]]
@@ -120,51 +42,44 @@ up () {
     UP=''
 }
 
-if [ -d $HOME/bin ]; then
-    PATH=$PATH:$HOME/bin
-fi
+#
+# Function to do lazy-loading of some expensive program.
+# Taken from https://gist.github.com/smac89/4b85bd3f9fb902439c0e67e36272832e
+#
+local function lazy_load() {
+    local -xr thunk="$(cat)"
+    # (u) removes duplicates
+    local -xr triggers=(${(u)@})
 
-if [[ "$(uname)" == "Darwin" ]]; then
-    # We are on Mac OSX
-
-    # Autojump with homebrew
-    if [ -f `brew --prefix`/etc/autojump.sh ]; then
-        source `brew --prefix`/etc/autojump.sh
-    else
-        echo "You may want to install autojump from homebrew"
+    # Only if length of triggers is greater than zero
+    # otherwise the function will immediately execute.
+    # (X) reports errors if any
+    if [ ${(X)#triggers} -gt 0 ]; then
+        eval " ${(@)triggers}() {
+            trigger=\"\$0\"
+            unfunction ${(@)triggers}
+            ${thunk}
+            if type \$trigger > /dev/null; then
+                \$trigger \${@}
+            fi
+        }"
     fi
+}
 
-elif [[ "$(expr substr $(uname -s) 1 5)" == "Linux" ]]; then
-    # Do something under Linux platform
-elif [[ "$(expr substr $(uname -s) 1 10)" == "MINGW32_NT" ]]; then
-    # Do something under Windows NT platform
-fi
+# Lazy load pyenv
+lazy_load 'pyenv' <<-'EOF'
+	export PYENV_ROOT="$HOME/.pyenv"
+	export PATH="$PYENV_ROOT/bin:$PATH"
+	eval "$(pyenv init --path)"
+	eval "$(pyenv init -)"
+	eval "$(pyenv virtualenv-init -)"
+	EOF
 
-alias ll='ls -lh --color'
-alias diff='colordiff'
+lazy_load 'sdk' 'java' 'gradle' 'mvn' 'mvnd' <<-'EOF'
+	export SDKMAN_DIR="${HOME}/.sdkman"
+	[ -s "$SDKMAN_DIR/bin/sdkman-init.sh" ] && source "$SDKMAN_DIR/bin/sdkman-init.sh"
+	EOF
 
-# Only load this stuff if we are running iterm, aka not csshX
-if `echo $TERM_PROGRAM | grep iTerm.app >/dev/null`
-then
-    # Yubikey stuff
-    export "GPG_TTY=$(tty)"
-    export "SSH_AUTH_SOCK=${HOME}/.gnupg/S.gpg-agent.ssh"
+# Delete the lazy_load function now for security purposes
+unfunction lazy_load
 
-    # Node version manager (nvm) stuff
-    export NVM_DIR="$HOME/.nvm"
-    [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" --no-use # This loads nvm
-    [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
-
-    # Start GPG agent if it is not already running
-    /usr/local/MacGPG2/bin/gpgconf --launch gpg-agent
-
-    # Use the pyenv provided python
-    eval "$(pyenv init -)"
-fi
-
-# Complete profile
-#zprof
-
-#THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
-export SDKMAN_DIR="/Users/plaporte/.sdkman"
-[[ -s "/Users/plaporte/.sdkman/bin/sdkman-init.sh" ]] && source "/Users/plaporte/.sdkman/bin/sdkman-init.sh"
