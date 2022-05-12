@@ -1,3 +1,6 @@
+" First, install vim-plug with
+" sh -c 'curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
+
 " Put all backups into a dedicated directory
 silent exec "!mkdir -p ~/.vim_backup"
 set backupdir=~/.vim_backup//,.
@@ -56,7 +59,6 @@ nmap <leader>r :set relativenumber!<CR>
 " For Asciidoc files:
 augroup asciidoctor
     au!
-    au BufEnter *.adoc,*.asciidoc call AsciidoctorMappings()
     " Mark the 120th column, and wrap long lines with a visual indicator
     au BufEnter *.adoc,*.asciidoc set colorcolumn=120 textwidth=0 wrap linebreak showbreak=↳ breakindent breakindentopt=min:20,shift:2
     au BufEnter *.adoc,*.asciidoc highlight ColorColumn ctermbg=16 guibg=black
