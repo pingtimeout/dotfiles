@@ -8,6 +8,7 @@ ln -sf ~/dotfiles/gitconfig ~/.gitconfig
 ln -sf ~/dotfiles/zshrc ~/.zshrc
 ln -sf ~/dotfiles/zpreztorc ~/.zpreztorc
 ln -sf ~/dotfiles/screenrc ~/.screenrc
-ln -sf ~/dotfiles/vimrc ~/.vimrc
+mkdir -p ~/.config/nvim
+ln -sf ~/dotfiles/init.vim ~/.config/nvim/init.vim
 
 popd
