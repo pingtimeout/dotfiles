@@ -83,3 +83,13 @@ lazy_load 'sdk' 'java' 'gradle' 'mvn' 'mvnd' <<-'EOF'
 # Delete the lazy_load function now for security purposes
 unfunction lazy_load
 
+# Define some aliases to very common commands
+alias -g EL='|& less'
+alias -g ELS='|& less -S'
+alias -g ET='|& tail'
+alias -g L="| less"
+alias -g LL="2>&1 | less"
+alias -g S='| sort'
+alias -g T='| tail'
+alias -g US='| sort -u'
+
