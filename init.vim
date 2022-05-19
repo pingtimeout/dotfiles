@@ -6,8 +6,27 @@ silent exec "!mkdir -p ~/.vim_backup"
 set backupdir=~/.vim_backup//,.
 set directory=~/.vim_backup//,.
 
+" Enable line numbers and relative numbers everywhere, and toggle them with "\r"
+set number
+set relativenumber
+nmap <leader>r :set relativenumber!<CR>
+
 " Set tabs to 2 spaces
-set tabstop=2 shiftwidth=2 softtabstop=2 expandtab
+set tabstop=2
+set shiftwidth=2
+set smarttab
+set softtabstop=2
+set expandtab
+
+set encoding=UTF-8
+set autoindent
+set mouse=a
+
+" Use Control-hjkl to switch between windows
+nmap <C-h> <C-w>h
+nmap <C-j> <C-w>j
+nmap <C-k> <C-w>k
+nmap <C-l> <C-w>l
 
 " Display invisible characters (newlines, tabs)
 " Shortcut to rapidly toggle `set list`
@@ -20,41 +39,59 @@ nnoremap Y Y
 
 call plug#begin('~/.vim/plugged')
 Plug 'tpope/vim-sensible'                               " Sensible defaults
-Plug 'arcticicestudio/nord-vim'                         " Nord theme for Vim
 Plug 'habamax/vim-asciidoctor'                          " Fast syntax highlighter for asciidoc files, including folding
-Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' } " View directory tree with :NERDTree
+Plug 'preservim/nerdtree'                               " View directory tree with :NERDTree or with <CTRL-t> and <CTRL-f>
 Plug 'godlygeek/tabular'                                " Tabularise content with :Tabularize /,
 Plug 'tpope/vim-surround'                               " Surround regions of text with csiW'
 Plug 'vim-airline/vim-airline'                          " Better status bar
 Plug 'airblade/vim-gitgutter'                           " Display local changes for files versioned with Git
 Plug 'nkakouros-original/numbers.nvim'                  " Deactivate relative line numbers in insert mode
+Plug 'nvim-treesitter/nvim-treesitter'                  " Required for orgmode
+Plug 'nvim-orgmode/orgmode'                             " Orgmode for vim
+Plug 'https://github.com/rafi/awesome-vim-colorschemes' " Retro colorschemes
+Plug 'https://github.com/tpope/vim-commentary'          " Comment/uncomment lines with gcc and gc
+Plug 'https://github.com/ap/vim-css-color'              " CSS Color Preview in all files
+Plug 'https://github.com/preservim/tagbar'              " Tagbar for code navigation with :TagbarToggle or <F8>
 call plug#end()
 
+" Map CTRL-n to a new NERDTree instance against the current directory
+" Use CTRL-t to open/close NERDTree
+" Use CTRL-f to open NERDTree and focus on the current file
+nnoremap <C-n> :NERDTree<CR>
+nnoremap <C-t> :NERDTreeToggle<CR>
+nnoremap <C-f> :NERDTreeFind<CR>
+
+" Exit Vim if NERDTree is the only window remaining in the only tab.
+autocmd BufEnter * if tabpagenr('$') == 1 && winnr('$') == 1 && exists('b:NERDTree') && b:NERDTree.isTabTree() | quit | endif
+
+" Map <F8> to tagbar
+nmap <F8> :TagbarToggle<CR>
+
+" nvim-orgmode config
+lua << EOF
+require('orgmode').setup_ts_grammar()
+require'nvim-treesitter.configs'.setup {
+  highlight = {
+    enable = true,
+    disable = {'org'},
+    additional_vim_regex_highlighting = {'org'},
+  },
+  ensure_installed = {'org'},
+}
+require('orgmode').setup({
+  org_agenda_files = {'~/env/home/org/*'},
+  org_default_notes_file = '~/env/home/org/refile.org',
+})
+EOF
+
+" numbers.nvim config
 lua require('numbers').setup()
-
-
-" Use the Nord theme with a specific color for line numbers
-:colorscheme nord
-:highlight LineNr guifg=#5e81ac
-
 
 " Use case insensitive search except when using capital letters
 set ignorecase
 set smartcase
 
-
-" Use Control-hjkl to switch between windows
-map <C-h> <C-w>h
-map <C-j> <C-w>j
-map <C-k> <C-w>k
-map <C-l> <C-w>l
-
-
-" Enable line numbers and relative numbers everywhere, and toggle them with "\r"
-se number
-se relativenumber
-nmap <leader>r :set relativenumber!<CR>
-
+:colorscheme sonokai
 
 " For Asciidoc files:
 augroup asciidoctor
@@ -75,3 +112,20 @@ augroup asciidoctor
     endfunction
     au BufEnter *.adoc,*.asciidoc set formatexpr=OneSentencePerLine()
 augroup END
+
+" ------------------------------------------------------------------------------
+"                            surround.vim tutorial
+" ------------------------------------------------------------------------------
+"
+" Press cs"' inside "Hello world!" to change it to 'Hello world!'
+" Now press cs'<q> inside 'Hello world!' to change it to <q>Hello world!</q>
+" To go full circle, press cst" to get "Hello world!"
+"
+" To remove the delimiters entirely, press ds" in "Hello world!"
+"
+" Now with the cursor on Hello, press ysiw] (iw is a text object).
+" "Hello world!" will bebome "[Hello] world!"
+"
+" It also works with braces using ysiw} and parentheses using ysiw)
+"
+" Now wrap the entire line in parentheses with yssb or yss).
