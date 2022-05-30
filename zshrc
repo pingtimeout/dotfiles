@@ -93,6 +93,8 @@ alias -g LL="2>&1 | less"
 alias -g S='| sort'
 alias -g T='| tail'
 alias -g US='| sort -u'
+alias -g GRCB='2>&1| grcat customs/conf.bash | less -RS'
+alias -g GRCL='2>&1| grcat customs/conf.applog | less -RS'
 
 alias vim=nvim
 alias ls='ls --group-directories-first --color=auto --hyperlink=auto'

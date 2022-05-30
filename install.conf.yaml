@@ -6,6 +6,7 @@
 
 - link:
     ~/.config/kitty: kitty
+    ~/.grc: grc
     ~/.zshrc: zshrc
 
 - shell:
