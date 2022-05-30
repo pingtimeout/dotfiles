@@ -1,0 +1,31 @@
+# Logs (DEBUG, INFO, WARN, ERROR)
+
+# DEBUG
+regexp=^.*DEBUG.*$
+colours=blue
+count=stop
+======
+# INFO
+regexp=^.*INFO.*$
+colours=green
+count=stop
+======
+# WARN
+regexp=^.*WARN.*$
+colours=yellow
+count=stop
+======
+# ERROR
+regexp=^.*ERROR.*$
+colours=red
+count=stop
+======
+# ERROR
+regexp=^(Caused by.*|\S+(Exception|Error):.*)$
+colours=red bold
+count=stop
+======
+# Stacktraces that start with com.datastax are important
+regexp=^.*com\.datastax\..*$
+colours=bold on_black
+count=stop
