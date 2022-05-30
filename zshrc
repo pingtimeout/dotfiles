@@ -84,6 +84,7 @@ lazy_load 'sdk' 'java' 'gradle' 'mvn' 'mvnd' <<-'EOF'
 unfunction lazy_load
 
 # Define some aliases to very common commands
+# Commands in caps can be appended at the end of other commands like `grep -v DEBUG /var/log/cassandra/system.log ELS`
 alias -g EL='|& less'
 alias -g ELS='|& less -S'
 alias -g ET='|& tail'
@@ -92,4 +93,7 @@ alias -g LL="2>&1 | less"
 alias -g S='| sort'
 alias -g T='| tail'
 alias -g US='| sort -u'
+
+alias vim=nvim
+alias ls='ls --group-directories-first --color=auto --hyperlink=auto'
 
