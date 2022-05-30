@@ -53,6 +53,7 @@ Plug 'dracula/vim', { 'as': 'dracula' }                 " Dracula colorscheme
 Plug 'https://github.com/tpope/vim-commentary'          " Comment/uncomment lines with gcc and gc
 Plug 'https://github.com/ap/vim-css-color'              " CSS Color Preview in all files
 Plug 'https://github.com/preservim/tagbar'              " Tagbar for code navigation with :TagbarToggle or <F8>
+Plug 'https://github.com/cohama/lexima.vim'             " Automatically close parens, quotes, etc while typing
 call plug#end()
 
 " Map CTRL-n to a new NERDTree instance against the current directory
