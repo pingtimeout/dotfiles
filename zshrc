@@ -83,6 +83,9 @@ lazy_load 'sdk' 'java' 'gradle' 'mvn' 'mvnd' <<-'EOF'
 # Delete the lazy_load function now for security purposes
 unfunction lazy_load
 
+# Override zprezto `directory` directory that prevents overwriting files
+setopt clobber
+
 # Define some aliases to very common commands
 # Commands in caps can be appended at the end of other commands like `grep -v DEBUG /var/log/cassandra/system.log ELS`
 alias -g EL='|& less'
