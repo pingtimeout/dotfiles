@@ -6,8 +6,10 @@
 
 - link:
     ~/.config/kitty: kitty
+    ~/.gitconfig: gitconfig
     ~/.gitignore: gitignore
     ~/.grc: grc
+    ~/.zpreztorc: zpreztorc
     ~/.zshrc: zshrc
 
 - shell:
