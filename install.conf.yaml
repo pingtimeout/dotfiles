@@ -8,7 +8,7 @@
     ~/.config/kitty: kitty
     ~/.gitconfig: gitconfig
     ~/.gitignore: gitignore
-    ~/.grc: grc
+    ~/.grc: grc-confs
     ~/.zpreztorc: zpreztorc
     ~/.zshrc: zshrc
 
