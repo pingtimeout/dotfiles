@@ -102,3 +102,7 @@ alias -g GRCL='2>&1| grcat customs/conf.applog | less -RS'
 alias vim=nvim
 alias ls='ls --group-directories-first --color=auto --hyperlink=auto'
 
+if [ -d ~/.local/bin ]; then
+    # Ensure that pipx executables are accessible
+    export PATH="$PATH:/Users/pierrelaporte/.local/bin"
+fi
