@@ -18,9 +18,15 @@ set smarttab
 set softtabstop=2
 set expandtab
 
+" Ensure that enough lines are shown before/after cursor for context
+set scrolloff=10
+
 set encoding=UTF-8
 set autoindent
 set mouse=a
+set noshowmode
+set splitbelow
+set splitright
 
 " Use Control-hjkl to switch between windows
 nmap <C-h> <C-w>h
@@ -57,19 +63,22 @@ Plug 'https://github.com/cohama/lexima.vim'             " Automatically close pa
 call plug#end()
 
 " Map CTRL-n to a new NERDTree instance against the current directory
-" Use CTRL-t to open/close NERDTree
-" Use CTRL-f to open NERDTree and focus on the current file
+" Use CTRL-t to open/close the current NERDTree
+" Use CTRL-f to open NERDTree in the current working directory and focus on the current file
 nnoremap <C-n> :NERDTree<CR>
 nnoremap <C-t> :NERDTreeToggle<CR>
 nnoremap <C-f> :NERDTreeFind<CR>
 
 " Exit Vim if NERDTree is the only window remaining in the only tab.
 autocmd BufEnter * if tabpagenr('$') == 1 && winnr('$') == 1 && exists('b:NERDTree') && b:NERDTree.isTabTree() | quit | endif
+" If another buffer tries to replace NERDTree, put it in the other window, and bring back NERDTree.
+autocmd BufEnter * if bufname('#') =~ 'NERD_tree_\d\+' && bufname('%') !~ 'NERD_tree_\d\+' && winnr('$') > 1 |
+    \ let buf=bufnr() | buffer# | execute "normal! \<C-W>w" | execute 'buffer'.buf | endif
 
 " Map <F8> to tagbar
 nmap <F8> :TagbarToggle<CR>
 
-" nvim-orgmode config
+" Store orgmode files under ~/env/home/org
 lua << EOF
 require('orgmode').setup_ts_grammar()
 require'nvim-treesitter.configs'.setup {
