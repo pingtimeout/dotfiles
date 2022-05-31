@@ -60,6 +60,7 @@ Plug 'https://github.com/tpope/vim-commentary'          " Comment/uncomment line
 Plug 'https://github.com/ap/vim-css-color'              " CSS Color Preview in all files
 Plug 'https://github.com/preservim/tagbar'              " Tagbar for code navigation with :TagbarToggle or <F8>
 Plug 'https://github.com/cohama/lexima.vim'             " Automatically close parens, quotes, etc while typing
+Plug 'https://github.com/airblade/vim-rooter'           " Automatically change directory when opening a file
 call plug#end()
 
 " Map CTRL-n to a new NERDTree instance against the current directory
@@ -95,12 +96,17 @@ require('orgmode').setup({
 })
 EOF
 
-" numbers.nvim config
+" Setup numbers.nvim
 lua require('numbers').setup()
 
 " Use case insensitive search except when using capital letters
 set ignorecase
 set smartcase
+
+" Automatically change directory only in the current tab
+let g:rooter_cd_cmd = 'tcd'
+" The new current working directory should be the deepest directory that contains one of these files/dirs
+let g:rooter_patterns = ['.git', 'Makefile', 'src']
 
 :colorscheme sonokai
 :colorscheme dracula
