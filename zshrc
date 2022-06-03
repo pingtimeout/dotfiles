@@ -106,3 +106,20 @@ if [ -d ~/.local/bin ]; then
     # Ensure that pipx executables are accessible
     export PATH="$PATH:/Users/pierrelaporte/.local/bin"
 fi
+
+# Bind ALT-v to enter Vi command mode edition on the current command
+# Bind ALT-k to edit the previous command in history with Vi
+# Bind ALT-j to edit the next command in history with Vi
+vi-cmd-up-line-history() {
+  zle vi-cmd-mode
+  zle up-line-or-history
+}
+vi-cmd-down-line-history() {
+  zle vi-cmd-mode
+  zle down-line-or-history
+}
+zle -N vi-cmd-up-line-history
+zle -N vi-cmd-down-line-history
+bindkey "^[v" vi-cmd-mode
+bindkey '^[k' vi-cmd-up-line-history
+bindkey '^[j' vi-cmd-down-line-history
