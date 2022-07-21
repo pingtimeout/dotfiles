@@ -1,6 +1,11 @@
 " First, install vim-plug with
 " sh -c 'curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
 
+" Set leader key to space
+nnoremap <SPACE> <Nop>
+nnoremap \ :echohl DraculaRedInverse \| echo "Leader key is SPACE" \| echohl None<CR>
+let mapleader = " "
+
 " Put all backups into a dedicated directory
 silent exec "!mkdir -p ~/.vim_backup"
 set backupdir=~/.vim_backup//,.
@@ -21,6 +26,7 @@ set expandtab
 " Ensure that enough lines are shown before/after cursor for context
 set scrolloff=10
 
+set updatetime=100
 set encoding=UTF-8
 set autoindent
 set mouse=a
@@ -63,12 +69,19 @@ Plug 'https://github.com/cohama/lexima.vim'             " Automatically close pa
 Plug 'https://github.com/airblade/vim-rooter'           " Automatically change directory when opening a file
 call plug#end()
 
-" Map CTRL-n to a new NERDTree instance against the current directory
-" Use CTRL-t to open/close the current NERDTree
-" Use CTRL-f to open NERDTree in the current working directory and focus on the current file
-nnoremap <C-n> :NERDTree<CR>
-nnoremap <C-t> :NERDTreeToggle<CR>
-nnoremap <C-f> :NERDTreeFind<CR>
+" Map main NERDTree commands under <LEADER>-n
+" - LEADER-n-n opens a new NERDTree instance against the current directory
+" - LEADER-n-t opens/closes the current NERDTree
+" - LEADER-n-f opens NERDTree in the current working directory and focus on the current file
+nnoremap <leader>nn :NERDTree<CR>
+nnoremap <leader>nt :NERDTreeToggle<CR>
+nnoremap <leader>nf :NERDTreeFind<CR>
+
+" Map main LanguageTool commands under <LEADER>-l
+" - LEADER-l-c runs LanguageTool checks and show them in a split window
+" - LEADER-l-x clears the LanguageTool checks
+nnoremap <leader>lc :LanguageToolCheck<CR>
+nnoremap <leader>lx :LanguageToolClear<CR>
 
 " Exit Vim if NERDTree is the only window remaining in the only tab.
 autocmd BufEnter * if tabpagenr('$') == 1 && winnr('$') == 1 && exists('b:NERDTree') && b:NERDTree.isTabTree() | quit | endif
@@ -130,6 +143,29 @@ augroup asciidoctor
     endfunction
     au BufEnter *.adoc,*.asciidoc set formatexpr=OneSentencePerLine()
 augroup END
+
+" Blink the cursor line when searching through matches to locate cursor more easily
+nnoremap <silent> n n:call HLNext(100)<CR>
+nnoremap <silent> N N:call HLNext(100)<CR>
+function! HLNext (blinktime)
+  set invcursorline
+  redraw
+  exec 'sleep ' . a:blinktime . 'm'
+  set invcursorline
+  redraw
+endfunction
+
+" In VimR, map Cmd-[ and Cmd-] to previous/next tab, respectively
+nnoremap <leader>[ :tabprevious<CR>
+nnoremap <leader>] :tabnext<CR>
+
+" Map LEADER-A-... to insert asciidoc related content from normal mode
+" - LEADER-A-T inserts an AsciiDoc table
+" - LEADER-A-C inserts an AsciiDoc code block
+" - LEADER-A-I inserts an AsciiDoc image
+nnoremap <leader>at :r ~/dotfiles/vim/abbreviations/asciidoc-table.adoc<CR>
+nnoremap <leader>ac :r ~/dotfiles/vim/abbreviations/asciidoc-code-block.adoc<CR>
+nnoremap <leader>ai :r ~/dotfiles/vim/abbreviations/asciidoc-image.adoc<CR>
 
 " ------------------------------------------------------------------------------
 "                            surround.vim tutorial
