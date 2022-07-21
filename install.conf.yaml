@@ -5,6 +5,7 @@
 - clean: ['~']
 
 - link:
+    ~/.config/yamllint: yamllint
     ~/.config/kitty: kitty
     ~/.gitconfig: gitconfig
     ~/.gitignore: gitignore
