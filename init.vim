@@ -66,6 +66,8 @@ Plug 'https://github.com/ap/vim-css-color'              " CSS Color Preview in a
 Plug 'https://github.com/preservim/tagbar'              " Tagbar for code navigation with :TagbarToggle or <F8>
 Plug 'https://github.com/cohama/lexima.vim'             " Automatically close parens, quotes, etc while typing
 Plug 'https://github.com/airblade/vim-rooter'           " Automatically change directory when opening a file
+Plug 'dpelle/vim-LanguageTool'                          " Check grammatical and syntax mistakes with :LanguageToolCheck
+Plug 'pedrohdz/vim-yaml-folds'                          " Better folding in YAML files
 call plug#end()
 
 " Map main NERDTree commands under <LEADER>-n
@@ -124,7 +126,7 @@ let g:rooter_patterns = ['.git', 'Makefile', 'src']
 
 " For Asciidoc files:
 augroup asciidoctor
-    au!
+    autocmd!
     " Mark the 120th column, and wrap long lines with a visual indicator
     au BufEnter *.adoc,*.asciidoc set colorcolumn=120 textwidth=0 wrap linebreak showbreak=↳ breakindent breakindentopt=min:20,shift:2
     au BufEnter *.adoc,*.asciidoc highlight ColorColumn ctermbg=16 guibg=black
@@ -141,6 +143,28 @@ augroup asciidoctor
     endfunction
     au BufEnter *.adoc,*.asciidoc set formatexpr=OneSentencePerLine()
 augroup END
+
+augroup yamlfiles
+  autocmd!
+  " Source => https://www.arthurkoziel.com/setting-up-vim-for-yaml/
+  " If not already the case, ensure that spaces are used and that an indentation level is 2 spaces
+  autocmd FileType yaml setlocal ts=2 sts=2 sw=2 expandtab
+  " Use a visible character for indentation levels => is easier to read
+  let g:indentLine_char = '⦙'
+  " Fold levels above 20 => do not fold anything when opening a file
+  set foldlevelstart=20
+  " Only lint the yaml when the file is saved
+  let g:ale_echo_msg_format = '[%linter%] %s [%severity%]'
+  let g:ale_sign_error = '✘'
+  let g:ale_sign_warning = '⚠'
+  let g:ale_lint_on_text_changed = 'never'
+augroup END
+
+" Do not specify LanguageTool jar as `java` may not be accessible unless SdkMan has already been loaded
+" Instead, use the system-wide runner.
+" Also, disable the rule that matches open/close brackets as Asciidoc open brackets for URLs are not parsed correctly.
+let g:languagetool_cmd='/usr/local/bin/languagetool'
+let g:languagetool_disable_rules='EN_UNPAIRED_BRACKETS'
 
 " Blink the cursor line when searching through matches to locate cursor more easily
 nnoremap <silent> n n:call HLNext(100)<CR>
@@ -164,6 +188,40 @@ nnoremap <leader>] :tabnext<CR>
 nnoremap <leader>at :r ~/dotfiles/vim/abbreviations/asciidoc-table.adoc<CR>
 nnoremap <leader>ac :r ~/dotfiles/vim/abbreviations/asciidoc-code-block.adoc<CR>
 nnoremap <leader>ai :r ~/dotfiles/vim/abbreviations/asciidoc-image.adoc<CR>
+
+" Fold Asciidoc sections
+let g:asciidoctor_folding = 1
+
+let g:tagbar_type_asciidoctor = {
+    \ 'ctagstype' : 'asciidoc',
+    \ 'kinds'     : [
+          \ 'c:chapter:0:1',
+          \ 's:section:0:1',
+          \ 'S:subsection:0:1',
+          \ 't:subsubsection:0:1',
+          \ 'T:paragraph:0:1',
+          \ 'u:subparagraph:0:1',
+          \ 'a:anchor:0:0',
+    \ ],
+    \ 'sro'        : '""',
+    \ 'kind2scope' : {
+          \ 'c' : 'chapter',
+          \ 's' : 'section',
+          \ 'S' : 'subsection',
+          \ 't' : 'subsubsection',
+          \ 'T' : 'l4subsection',
+          \ 'u' : 'l5subsection',
+    \ },
+    \ 'scope2kind' : {
+          \ 'chapter' : 'c',
+          \ 'section' : 's',
+          \ 'subsection' : 'S',
+          \ 'subsubsection' : 't',
+          \ 'l4subsection' : 'T',
+          \ 'l5subsection' : 'u',
+    \ },
+    \ 'sort' : 0,
+    \ }
 
 " ------------------------------------------------------------------------------
 "                            surround.vim tutorial
