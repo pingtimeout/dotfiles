@@ -5,8 +5,9 @@
 - clean: ['~']
 
 - link:
-    ~/.config/yamllint: yamllint
     ~/.config/kitty: kitty
+    ~/.config/nvim/init.vim: init.vim
+    ~/.config/yamllint: yamllint
     ~/.gitconfig: gitconfig
     ~/.gitignore: gitignore
     ~/.grc: grc-confs
