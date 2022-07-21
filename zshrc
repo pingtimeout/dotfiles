@@ -123,3 +123,6 @@ zle -N vi-cmd-down-line-history
 bindkey "^[v" vi-cmd-mode
 bindkey '^[k' vi-cmd-up-line-history
 bindkey '^[j' vi-cmd-down-line-history
+
+# Map the `s` command to Kitty ssh helper to handle terminfo mess
+alias s='kitty +kitten ssh'
