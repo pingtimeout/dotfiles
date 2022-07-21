@@ -60,7 +60,6 @@ Plug 'airblade/vim-gitgutter'                           " Display local changes 
 Plug 'nkakouros-original/numbers.nvim'                  " Deactivate relative line numbers in insert mode
 Plug 'nvim-treesitter/nvim-treesitter'                  " Required for orgmode
 Plug 'nvim-orgmode/orgmode'                             " Orgmode for vim
-Plug 'https://github.com/rafi/awesome-vim-colorschemes' " Retro colorschemes
 Plug 'dracula/vim', { 'as': 'dracula' }                 " Dracula colorscheme
 Plug 'https://github.com/tpope/vim-commentary'          " Comment/uncomment lines with gcc and gc
 Plug 'https://github.com/ap/vim-css-color'              " CSS Color Preview in all files
@@ -121,7 +120,6 @@ let g:rooter_cd_cmd = 'tcd'
 " The new current working directory should be the deepest directory that contains one of these files/dirs
 let g:rooter_patterns = ['.git', 'Makefile', 'src']
 
-:colorscheme sonokai
 :colorscheme dracula
 
 " For Asciidoc files:
