@@ -1,0 +1,1 @@
+image:path_to_image.png[alttext, format=png]
