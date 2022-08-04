@@ -4,6 +4,10 @@
 
 - clean: ['~']
 
+- create:
+    - ~/.config/
+    - ~/.config/nvim
+
 - link:
     ~/.config/kitty: kitty
     ~/.config/nvim/init.vim: init.vim
