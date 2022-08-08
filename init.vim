@@ -114,6 +114,17 @@ require'nvim-treesitter.configs'.setup {
 require('orgmode').setup({
   org_agenda_files = {'~/env/home/org/*'},
   org_default_notes_file = '~/env/home/org/refile.org',
+  org_capture_templates = {
+    t = {
+      description = 'Task',
+      template = '* TODO %?\n %u'
+    },
+    r = {
+      description = 'Request',
+      template = '* TODO %?\n** What is the context of the request?\n** Why is this timeline required?\n** What is the problem that needs solved?\n  %u',
+      target = '~/env/home/org/dremio.org',
+    },
+  },
 })
 EOF
 
