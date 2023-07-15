@@ -17,8 +17,10 @@
   - jq
   - karabiner-elements
   - keepassxc
+  - languagetool
   - spotify
   - tree
+  - tree-sitter
   - vimr
   - vlc
   - zsh
