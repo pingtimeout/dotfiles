@@ -76,3 +76,15 @@
 
 - brew:
   - sdkman-cli
+
+- shell:
+  - stdout: true
+    command: |
+      echo "The environment is almost ready.  Now this following components should be installed manually with pyenv, pip and sdkman:"
+      echo "* Python 3.x"
+      echo "* OpenJDK 17+"
+      echo "* JDK Mission Control"
+      echo "* Maven"
+      echo "* Maven Daemon"
+      echo "* Quarkus"
+      echo "* VisualVM"
