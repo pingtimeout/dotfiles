@@ -37,6 +37,7 @@
   - helm
   - k9s
   - pyenv
+  - pyenv-virtualenv
 
   # Yubikey-related apps
   - gnupg
