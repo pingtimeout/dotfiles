@@ -4,6 +4,52 @@
 
 - clean: ['~']
 
+- brew:
+  # Utilities
+  - alfred
+  - caffeine
+  - divvy
+  - ffmpeg
+  - firefox
+  - fswatch
+  - htop
+  - imagemagick
+  - jq
+  - karabiner-elements
+  - keepassxc
+  - spotify
+  - tree
+  - vimr
+  - vlc
+  - zsh
+
+  # Communication
+  - slack
+  - zoom
+
+  # Dev stuff
+  - colima
+  - coreutils
+  - gh
+  - git
+  - helm
+  - k9s
+  - pyenv
+
+  # Yubikey-related apps
+  - gnupg
+  - yubikey-personalization
+  - hopenpgp-tools
+  - ykman
+  - pinentry-mac
+  - wget
+
+- tap:
+    - homebrew/cask-fonts
+
+- cask:
+  - font-fira-code
+
 - create:
     - ~/.config/
     - ~/.config/nvim
@@ -21,12 +67,4 @@
 
 - shell:
   - [git submodule update --init --recursive, Installing submodules]
-
-- brew:
-  - gnupg
-  - yubikey-personalization
-  - hopenpgp-tools
-  - ykman
-  - pinentry-mac
-  - wget
 
