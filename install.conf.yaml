@@ -70,3 +70,8 @@
 - shell:
   - [git submodule update --init --recursive, Installing submodules]
 
+- tap:
+    - sdkman/tap
+
+- brew:
+  - sdkman-cli
