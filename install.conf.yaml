@@ -5,6 +5,9 @@
 
 - clean: ['~']
 
+- shell:
+    - [git submodule update --init --recursive, Installing submodules]
+
 - brew:
     # Utilities
     - alfred
@@ -90,7 +93,6 @@
     ~/.zshrc: zshrc
 
 - shell:
-    - [git submodule update --init --recursive, Installing submodules]
     - [gem install asciidoctor-diagram --user, Installing Asciidoctor-diagram]
 
 - tap:
