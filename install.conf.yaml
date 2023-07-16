@@ -8,7 +8,9 @@
   # Utilities
   - alfred
   - asciidoctor
+  - bat
   - caffeine
+  - calibre
   - divvy
   - ffmpeg
   - firefox
@@ -34,6 +36,7 @@
   # Dev stuff
   - colima
   - coreutils
+  - diff-so-fancy
   - gh
   - git
   - helm
