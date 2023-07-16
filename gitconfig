@@ -17,7 +17,7 @@
     ui = true
 [core]
     editor = nvim
-    excludesfile = /Users/plaporte/.gitignore
+    excludesfile = /Users/pierrelaporte/.gitignore
     pager = diff-so-fancy | less --tabs=4 -RFX
 [help]
     autocorrect = 1
@@ -31,7 +31,7 @@
 [commit]
     gpgsign = true
 [interactive]
-    diffFilter = diff-so-fancy --patch
+    #diffFilter = diff-so-fancy --patch
 [color "diff-highlight"]
     oldNormal = red bold
     oldHighlight = red bold 52

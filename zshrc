@@ -66,7 +66,6 @@ local function lazy_load() {
     fi
 }
 
-# Lazy load pyenv
 lazy_load 'pyenv' <<-'EOF'
 	export PYENV_ROOT="$HOME/.pyenv"
 	export PATH="$PYENV_ROOT/bin:$PATH"
@@ -80,6 +79,19 @@ lazy_load 'sdk' 'java' 'gradle' 'mvn' 'mvnd' <<-'EOF'
 	[ -s "$SDKMAN_DIR/bin/sdkman-init.sh" ] && source "$SDKMAN_DIR/bin/sdkman-init.sh"
 	EOF
 
+# lazy_load 'nvm' 'npm' <<-'EOF'
+# 	export NVM_DIR="$HOME/.nvm"
+# 	[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+# 	[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+# 	EOF
+
+lazy_load 'aws' <<-'EOF'
+	autoload bashcompinit && bashcompinit
+	autoload -Uz compinit && compinit
+	export PATH="/Users/pierrelaporte/env/opt/aws-cli/bin:$PATH"
+	complete -C '/Users/pierrelaporte/env/opt/aws-cli/aws_completer' aws
+	EOF
+
 # Delete the lazy_load function now for security purposes
 unfunction lazy_load
 
@@ -90,16 +102,19 @@ setopt clobber
 # Commands in caps can be appended at the end of other commands like `grep -v DEBUG /var/log/cassandra/system.log ELS`
 alias -g EL='|& less'
 alias -g ELS='|& less -S'
+alias -g ELRS='|& less -RS'
 alias -g ET='|& tail'
 alias -g L="| less"
-alias -g LL="2>&1 | less"
+alias -g LRS='| less -RS'
 alias -g S='| sort'
 alias -g T='| tail'
 alias -g US='| sort -u'
-alias -g GRCB='2>&1| grcat customs/conf.bash | less -RS'
-alias -g GRCL='2>&1| grcat customs/conf.applog | less -RS'
+alias -g GRCB='|& grcat customs/conf.bash | less -RS'
+alias -g GRCL='|& grcat customs/conf.applog | less -RS'
 
 alias vim=nvim
+alias jiq='\jiq -q && echo'
+alias dsf=diff-so-fancy
 alias ls='ls --group-directories-first --color=auto --hyperlink=auto'
 
 if [ -d ~/.local/bin ]; then
@@ -131,3 +146,35 @@ alias s='kitty +kitten ssh'
 if [[ -s "$HOME/.linuxify" ]]; then
   source "$HOME/.linuxify"
 fi
+
+# Increase limits to build Dremio
+NOFILE=$(sysctl -n kern.maxfilesperproc)
+ulimit -n $NOFILE
+NOPROC=$(sysctl -n kern.maxproc)
+ulimit -u $NOPROC
+export PIP_NO_BINARY=grpcio,grpcio-tools
+
+# Enable GPG SSH agent for Yubikey private key support
+export SSH_AUTH_SOCK=$(gpgconf --list-dirs agent-ssh-socket)
+
+PATH="/Users/pierrelaporte/perl5/bin${PATH:+:${PATH}}"; export PATH;
+PERL5LIB="/Users/pierrelaporte/perl5/lib/perl5${PERL5LIB:+:${PERL5LIB}}"; export PERL5LIB;
+PERL_LOCAL_LIB_ROOT="/Users/pierrelaporte/perl5${PERL_LOCAL_LIB_ROOT:+:${PERL_LOCAL_LIB_ROOT}}"; export PERL_LOCAL_LIB_ROOT;
+PERL_MB_OPT="--install_base \"/Users/pierrelaporte/perl5\""; export PERL_MB_OPT;
+PERL_MM_OPT="INSTALL_BASE=/Users/pierrelaporte/perl5"; export PERL_MM_OPT;
+
+# useful only for Mac OS Silicon M1,
+# still working but useless for the other platforms
+docker() {
+ if [[ `uname -m` == "arm64" ]] && [[ "$1" == "run" || "$1" == "build" ]]; then
+    /opt/homebrew/bin/docker "$1" --platform linux/amd64 "${@:2}"
+  else
+     /opt/homebrew/bin/docker "$@"
+  fi
+}
+
+# The next line updates PATH for the Google Cloud SDK.
+if [ -f '/Users/pierrelaporte/env/opt/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/pierrelaporte/env/opt/google-cloud-sdk/path.zsh.inc'; fi
+
+# The next line enables shell command completion for gcloud.
+if [ -f '/Users/pierrelaporte/env/opt/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/pierrelaporte/env/opt/google-cloud-sdk/completion.zsh.inc'; fi

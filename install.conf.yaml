@@ -1,3 +1,4 @@
+---
 - defaults:
     link:
       relink: true
@@ -5,66 +6,81 @@
 - clean: ['~']
 
 - brew:
-  # Utilities
-  - alfred
-  - asciidoctor
-  - bat
-  - caffeine
-  - calibre
-  - divvy
-  - ffmpeg
-  - firefox
-  - fswatch
-  - htop
-  - hugo
-  - imagemagick
-  - jq
-  - karabiner-elements
-  - keepassxc
-  - languagetool
-  - spotify
-  - tree
-  - tree-sitter
-  - vimr
-  - vlc
-  - zsh
+    # Utilities
+    - alfred
+    - asciidoctor
+    - bat
+    - caffeine
+    - calibre
+    - divvy
+    - ffmpeg
+    - firefox
+    - fswatch
+    - grc
+    - htop
+    - hugo
+    - imagemagick
+    - jq
+    - karabiner-elements
+    - keepassxc
+    - languagetool
+    - spotify
+    - tree
+    - tree-sitter
+    - vimr
+    - vlc
+    - zsh
 
-  # Communication
-  - slack
-  - zoom
+    # Communication
+    - slack
+    - zoom
 
-  # Dev stuff
-  - colima
-  - coreutils
-  - diff-so-fancy
-  - gh
-  - git
-  - helm
-  - k9s
-  - pyenv
-  - pyenv-virtualenv
+    # Dev stuff
+    - colima
+    - coreutils
+    - diff-so-fancy
+    - gh
+    - git
+    - helm
+    - k9s
+    - pyenv
+    - pyenv-virtualenv
 
-  # Yubikey-related apps
-  - gnupg
-  - yubikey-personalization
-  - hopenpgp-tools
-  - ykman
-  - pinentry-mac
-  - wget
+    # Yubikey-related apps
+    - gnupg
+    - yubikey-personalization
+    - hopenpgp-tools
+    - ykman
+    - pinentry-mac
+    - wget
 
 - tap:
     - homebrew/cask-fonts
 
 - cask:
-  - font-fira-code
+    - font-fira-code
+    - font-jetbrains-mono
 
 - create:
     - ~/.config/
     - ~/.config/nvim
+    - ~/.config/nvim/plugin.d
 
 - link:
     ~/.config/kitty: kitty
     ~/.config/nvim/init.vim: init.vim
+    ~/.config/nvim/plugin.d/ale.vim: vim/ale.vim
+    ~/.config/nvim/plugin.d/close-buffers.vim: vim/close-buffers.vim
+    ~/.config/nvim/plugin.d/nerdtree.vim: vim/nerdtree.vim
+    ~/.config/nvim/plugin.d/numbers.vim: vim/numbers.vim
+    ~/.config/nvim/plugin.d/org-bullets.vim: vim/org-bullets.vim
+    ~/.config/nvim/plugin.d/orgmode.vim: vim/orgmode.vim
+    ~/.config/nvim/plugin.d/tabular.vim: vim/tabular.vim
+    ~/.config/nvim/plugin.d/tagbar.vim: vim/tagbar.vim
+    ~/.config/nvim/plugin.d/vim-LanguageTool.vim: vim/vim-LanguageTool.vim
+    ~/.config/nvim/plugin.d/vim-asciidoctor.vim: vim/vim-asciidoctor.vim
+    ~/.config/nvim/plugin.d/vim-rooter.vim: vim/vim-rooter.vim
+    ~/.config/nvim/plugin.d/vim-yaml-folds.vim: vim/vim-yaml-folds.vim
     ~/.config/yamllint: yamllint
     ~/.gitconfig: gitconfig
     ~/.gitignore: gitignore
@@ -74,27 +90,27 @@
     ~/.zshrc: zshrc
 
 - shell:
-  - [git submodule update --init --recursive, Installing submodules]
-  - [gem install asciidoctor-diagram --user, Installing Asciidoctor-diagram]
+    - [git submodule update --init --recursive, Installing submodules]
+    - [gem install asciidoctor-diagram --user, Installing Asciidoctor-diagram]
 
 - tap:
     - sdkman/tap
 
 - brew:
-  - sdkman-cli
+    - sdkman-cli
 
 - shell:
-  - stdout: true
-    quiet: true
-    command: |
-      echo "The environment is almost ready.  Now this following components should be installed manually with pyenv, pip and sdkman:"
-      echo "* Python 3.x"
-      echo "* OpenJDK 17+"
-      echo "* JDK Mission Control"
-      echo "* Maven"
-      echo "* Maven Daemon"
-      echo "* Quarkus"
-      echo "* VisualVM"
-      echo ""
-      echo "Additionally, run this command so that Linux commands are used instead of outdated/BSD MacOS ones."
-      echo "cd $HOME/dotfiles/linuxify; ./linuxify install"
+    - stdout: true
+      quiet: true
+      command: |
+        echo "The environment is almost ready.  Now this following components should be installed manually with pyenv, pip and sdkman:"
+        echo "* Python 3.x"
+        echo "* OpenJDK 17+"
+        echo "* JDK Mission Control"
+        echo "* Maven"
+        echo "* Maven Daemon"
+        echo "* Quarkus"
+        echo "* VisualVM"
+        echo ""
+        echo "Additionally, run this command so that Linux commands are used instead of outdated/BSD MacOS ones."
+        echo "cd $HOME/dotfiles/linuxify; ./linuxify install"
