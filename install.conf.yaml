@@ -82,6 +82,7 @@
 
 - shell:
   - stdout: true
+    quiet: true
     command: |
       echo "The environment is almost ready.  Now this following components should be installed manually with pyenv, pip and sdkman:"
       echo "* Python 3.x"
@@ -91,3 +92,6 @@
       echo "* Maven Daemon"
       echo "* Quarkus"
       echo "* VisualVM"
+      echo ""
+      echo "Additionally, run this command so that Linux commands are used instead of outdated/BSD MacOS ones."
+      echo "cd $HOME/dotfiles/linuxify; ./linuxify install"

@@ -126,3 +126,8 @@ bindkey '^[j' vi-cmd-down-line-history
 
 # Map the `s` command to Kitty ssh helper to handle terminfo mess
 alias s='kitty +kitten ssh'
+
+# Source Linuxify
+if [[ -s "$HOME/.linuxify" ]]; then
+  source "$HOME/.linuxify"
+fi
