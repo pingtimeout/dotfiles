@@ -39,8 +39,10 @@
     - zoom
 
     # Dev stuff
+    - awscli
     - colima
     - coreutils
+    - docker
     - diff-so-fancy
     - gh
     - git
