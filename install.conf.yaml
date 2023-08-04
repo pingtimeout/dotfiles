@@ -16,6 +16,7 @@
     - caffeine
     - calibre
     - divvy
+    - duti
     - ffmpeg
     - firefox
     - fswatch
@@ -58,6 +59,9 @@
     - ykman
     - pinentry-mac
     - wget
+
+- shell:
+    - [duti -s org.mozilla.firefox .adoc all, Associating Asciidoc files with firefox]
 
 - tap:
     - homebrew/cask-fonts
