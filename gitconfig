@@ -1,7 +1,6 @@
 [user]
     email = pierre@pingtimeout.fr
     name = Pierre Laporte
-    signingkey = 9C21DBC34FBDB99E
 [push]
     default = current
 [alias]
@@ -28,8 +27,6 @@
     textconv = /usr/bin/gzcat
 [rebase]
     autoStash = true
-[commit]
-    gpgsign = true
 [interactive]
     #diffFilter = diff-so-fancy --patch
 [color "diff-highlight"]
