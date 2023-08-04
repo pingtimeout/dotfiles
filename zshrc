@@ -165,13 +165,13 @@ PERL_MM_OPT="INSTALL_BASE=/Users/pierrelaporte/perl5"; export PERL_MM_OPT;
 
 # useful only for Mac OS Silicon M1,
 # still working but useless for the other platforms
-docker() {
- if [[ `uname -m` == "arm64" ]] && [[ "$1" == "run" || "$1" == "build" ]]; then
-    /opt/homebrew/bin/docker "$1" --platform linux/amd64 "${@:2}"
-  else
-     /opt/homebrew/bin/docker "$@"
-  fi
-}
+# docker() {
+#  if [[ `uname -m` == "arm64" ]] && [[ "$1" == "run" || "$1" == "build" ]]; then
+#     /opt/homebrew/bin/docker "$1" --platform linux/amd64 "${@:2}"
+#   else
+#      /opt/homebrew/bin/docker "$@"
+#   fi
+# }
 
 # The next line updates PATH for the Google Cloud SDK.
 if [ -f '/Users/pierrelaporte/env/opt/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/pierrelaporte/env/opt/google-cloud-sdk/path.zsh.inc'; fi
