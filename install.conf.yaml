@@ -28,6 +28,7 @@
     - karabiner-elements
     - keepassxc
     - languagetool
+    - netcat
     - spotify
     - tree
     - tree-sitter
@@ -51,6 +52,7 @@
     - git
     - helm
     - k9s
+    - kubectx
     - pyenv
     - pyenv-virtualenv
 
