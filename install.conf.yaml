@@ -45,14 +45,16 @@
     - awscli
     - colima
     - coreutils
+    - diff-so-fancy
     - docker
     - docker-compose
-    - diff-so-fancy
     - gh
     - git
+    - gnuplot
     - helm
     - k9s
     - kubectx
+    - plantuml
     - pyenv
     - pyenv-virtualenv
 
