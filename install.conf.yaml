@@ -11,7 +11,6 @@
 - brew:
     # Utilities
     - alfred
-    - asciidoctor
     - bat
     - caffeine
     - calibre
@@ -67,6 +66,7 @@
     - wget
 
 - shell:
+    - [gem install asciidoctor asciidoctor-diagram --user,Installing Asciidoctor and asciidoctor-diagram]
     - [duti -s org.mozilla.firefox .adoc all, Associating Asciidoc files with firefox]
 
 - tap:
