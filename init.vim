@@ -41,6 +41,7 @@ Plug 'fladson/vim-kitty'                                " Kitty config syntax
 Plug 'akinsho/org-bullets.nvim'                         " Unicode bullets for orgmode
 "Plug 'milisims/tree-sitter-org'                         " Treesitter for orgmode
 Plug 'gyim/vim-boxdraw'                                 " Plugin to draw simple ASCII diagrams with +o and +O, and lines with +- or +_ or +>
+Plug 'hashivim/vim-terraform'                           " Plugin to support tf files
 call plug#end()
 
 " If a plugin-specific configuration exists, load it
