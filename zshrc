@@ -112,6 +112,8 @@ alias -g US='| sort -u'
 alias -g GRCB='|& grcat customs/conf.bash | less -RS'
 alias -g GRCL='|& grcat customs/conf.applog | less -RS'
 
+alias -g DSF='-u | diff-so-fancy'
+
 alias vim=nvim
 alias jiq='\jiq -q && echo'
 alias dsf=diff-so-fancy
