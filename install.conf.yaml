@@ -106,6 +106,7 @@
 
 - shell:
     - [gem install asciidoctor-diagram --user, Installing Asciidoctor-diagram]
+    - [gem install asciidoctor-reducer --user, Installing Asciidoctor-reducer]
 
 - tap:
     - sdkman/tap

@@ -179,6 +179,7 @@ if [ -f '/Users/pierrelaporte/env/opt/google-cloud-sdk/path.zsh.inc' ]; then . '
 # The next line enables shell command completion for gcloud.
 if [ -f '/Users/pierrelaporte/env/opt/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/pierrelaporte/env/opt/google-cloud-sdk/completion.zsh.inc'; fi
 
+# Add user Ruby gems in the PATH
 if [ -d $(find $HOME/.gem/ruby/ -maxdepth 2 -name bin -type d) ]
 then
   export PATH="$(find $HOME/.gem/ruby/ -maxdepth 2 -name bin -type d):${PATH}}"
