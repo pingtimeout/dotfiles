@@ -115,6 +115,7 @@ alias -g GRCL='|& grcat customs/conf.applog | less -RS'
 alias -g DSF='-u | diff-so-fancy'
 
 alias vim=nvim
+alias bat='\bat bat --theme=Dracula'
 alias jiq='\jiq -q && echo'
 alias dsf=diff-so-fancy
 alias ls='ls --group-directories-first --color=auto --hyperlink=auto'

@@ -42,6 +42,8 @@ Plug 'akinsho/org-bullets.nvim'                         " Unicode bullets for or
 "Plug 'milisims/tree-sitter-org'                         " Treesitter for orgmode
 Plug 'gyim/vim-boxdraw'                                 " Plugin to draw simple ASCII diagrams with +o and +O, and lines with +- or +_ or +>
 Plug 'hashivim/vim-terraform'                           " Plugin to support tf files
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }     " Program to search files
+Plug 'junegunn/fzf.vim'                                 " Plugin to search files
 call plug#end()
 
 " If a plugin-specific configuration exists, load it

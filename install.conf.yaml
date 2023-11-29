@@ -19,6 +19,7 @@
     - ffmpeg
     - firefox
     - fswatch
+    - fzf
     - grc
     - htop
     - hugo
@@ -29,6 +30,7 @@
     - languagetool
     - netcat
     - spotify
+    - the_silver_searcher
     - tree
     - tree-sitter
     - universal-ctags
@@ -82,6 +84,7 @@
     - ~/.config/nvim/plugin.d/
 
 - link:
+    ~/.config/bat: bat
     ~/.config/kitty: kitty
     ~/.config/nvim/init.vim: init.vim
     ~/.config/nvim/plugin.d/ale.vim: vim/ale.vim

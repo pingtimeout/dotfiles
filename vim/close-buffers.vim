@@ -3,3 +3,4 @@
 nnoremap <leader>bu :unhide<CR>
 nnoremap <leader>bl :buffers<CR>
 nnoremap <leader>bm :Bdelete menu<CR>
+nnoremap <C-o> :Files<CR>
