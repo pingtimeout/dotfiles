@@ -66,31 +66,19 @@ local function lazy_load() {
     fi
 }
 
-lazy_load 'pyenv' <<-'EOF'
-	export PYENV_ROOT="$HOME/.pyenv"
-	export PATH="$PYENV_ROOT/bin:$PATH"
-	eval "$(pyenv init --path)"
-	eval "$(pyenv init -)"
-	eval "$(pyenv virtualenv-init -)"
-	EOF
+export PYENV_ROOT="$HOME/.pyenv"
+export PATH="$PYENV_ROOT/bin:$PATH"
+eval "$(pyenv init --path)"
+eval "$(pyenv init -)"
+eval "$(pyenv virtualenv-init -)"
 
-lazy_load 'sdk' 'java' 'gradle' 'mvn' 'mvnd' <<-'EOF'
-	export SDKMAN_DIR=$(brew --prefix sdkman-cli)/libexec
-	[ -s "$SDKMAN_DIR/bin/sdkman-init.sh" ] && source "$SDKMAN_DIR/bin/sdkman-init.sh"
-	EOF
+export SDKMAN_DIR=$(brew --prefix sdkman-cli)/libexec
+[ -s "$SDKMAN_DIR/bin/sdkman-init.sh" ] && source "$SDKMAN_DIR/bin/sdkman-init.sh"
 
-# lazy_load 'nvm' 'npm' <<-'EOF'
-# 	export NVM_DIR="$HOME/.nvm"
-# 	[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-# 	[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
-# 	EOF
-
-lazy_load 'aws' <<-'EOF'
-	autoload bashcompinit && bashcompinit
-	autoload -Uz compinit && compinit
-	export PATH="/Users/pierrelaporte/env/opt/aws-cli/bin:$PATH"
-	complete -C '/Users/pierrelaporte/env/opt/aws-cli/aws_completer' aws
-	EOF
+autoload bashcompinit && bashcompinit
+autoload -Uz compinit && compinit
+export PATH="/Users/pierrelaporte/env/opt/aws-cli/bin:$PATH"
+complete -C '/Users/pierrelaporte/env/opt/aws-cli/aws_completer' aws
 
 # Delete the lazy_load function now for security purposes
 unfunction lazy_load

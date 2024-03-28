@@ -87,7 +87,10 @@ set mouse=a
 set noshowmode
 set splitbelow
 set splitright
-:colorscheme dracula
+syntax enable
+set background=dark
+colorscheme solarized
+" :colorscheme dracula
 
 " Use Control-hjkl to switch between windows
 nmap <C-h> <C-w>h
