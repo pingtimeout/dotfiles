@@ -5,6 +5,9 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
 
+# Load Homebrew shell integration
+eval "$(/opt/homebrew/bin/brew shellenv)"
+
 #
 # Executes commands at the start of an interactive session.
 #
@@ -42,69 +45,22 @@ up () {
     UP=''
 }
 
-#
-# Function to do lazy-loading of some expensive program.
-# Taken from https://gist.github.com/smac89/4b85bd3f9fb902439c0e67e36272832e
-#
-local function lazy_load() {
-    local -xr thunk="$(cat)"
-    # (u) removes duplicates
-    local -xr triggers=(${(u)@})
-
-    # Only if length of triggers is greater than zero
-    # otherwise the function will immediately execute.
-    # (X) reports errors if any
-    if [ ${(X)#triggers} -gt 0 ]; then
-        eval " ${(@)triggers}() {
-            trigger=\"\$0\"
-            unfunction ${(@)triggers}
-            ${thunk}
-            if type \$trigger > /dev/null; then
-                \$trigger \${@}
-            fi
-        }"
-    fi
-}
-
-export PYENV_ROOT="$HOME/.pyenv"
-export PATH="$PYENV_ROOT/bin:$PATH"
-eval "$(pyenv init --path)"
-eval "$(pyenv init -)"
-eval "$(pyenv virtualenv-init -)"
-
-export SDKMAN_DIR=$(brew --prefix sdkman-cli)/libexec
-[ -s "$SDKMAN_DIR/bin/sdkman-init.sh" ] && source "$SDKMAN_DIR/bin/sdkman-init.sh"
-
-autoload bashcompinit && bashcompinit
-autoload -Uz compinit && compinit
-export PATH="/Users/pierrelaporte/env/opt/aws-cli/bin:$PATH"
-complete -C '/Users/pierrelaporte/env/opt/aws-cli/aws_completer' aws
-
-# Delete the lazy_load function now for security purposes
-unfunction lazy_load
-
 # Override zprezto `directory` directory that prevents overwriting files
 setopt clobber
 
 # Define some aliases to very common commands
 # Commands in caps can be appended at the end of other commands like `grep -v DEBUG /var/log/cassandra/system.log ELS`
 alias -g EL='|& less'
-alias -g ELS='|& less -S'
 alias -g ELRS='|& less -RS'
-alias -g ET='|& tail'
 alias -g L="| less"
 alias -g LRS='| less -RS'
 alias -g S='| sort'
 alias -g T='| tail'
 alias -g US='| sort -u'
-alias -g GRCB='|& grcat customs/conf.bash | less -RS'
-alias -g GRCL='|& grcat customs/conf.applog | less -RS'
-
 alias -g DSF='-u | diff-so-fancy'
 
 alias vim=nvim
 alias bat='\bat bat --theme=Dracula'
-alias jiq='\jiq -q && echo'
 alias dsf=diff-so-fancy
 alias ls='ls --group-directories-first --color=auto --hyperlink=auto'
 
@@ -154,24 +110,8 @@ PERL_LOCAL_LIB_ROOT="/Users/pierrelaporte/perl5${PERL_LOCAL_LIB_ROOT:+:${PERL_LO
 PERL_MB_OPT="--install_base \"/Users/pierrelaporte/perl5\""; export PERL_MB_OPT;
 PERL_MM_OPT="INSTALL_BASE=/Users/pierrelaporte/perl5"; export PERL_MM_OPT;
 
-# useful only for Mac OS Silicon M1,
-# still working but useless for the other platforms
-# docker() {
-#  if [[ `uname -m` == "arm64" ]] && [[ "$1" == "run" || "$1" == "build" ]]; then
-#     /opt/homebrew/bin/docker "$1" --platform linux/amd64 "${@:2}"
-#   else
-#      /opt/homebrew/bin/docker "$@"
-#   fi
-# }
-
-# The next line updates PATH for the Google Cloud SDK.
-if [ -f '/Users/pierrelaporte/env/opt/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/pierrelaporte/env/opt/google-cloud-sdk/path.zsh.inc'; fi
-
-# The next line enables shell command completion for gcloud.
-if [ -f '/Users/pierrelaporte/env/opt/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/pierrelaporte/env/opt/google-cloud-sdk/completion.zsh.inc'; fi
-
-# Add user Ruby gems in the PATH
-if [ -d $(find $HOME/.gem/ruby/ -maxdepth 2 -name bin -type d) ]
-then
-  export PATH="$(find $HOME/.gem/ruby/ -maxdepth 2 -name bin -type d):${PATH}}"
-fi
+# Load asdf runtime manager
+# Append completions to fpath and initialise completions with ZSH's compinit
+. "$HOME/.asdf/asdf.sh"
+fpath=(${ASDF_DIR}/completions $fpath)
+autoload -Uz compinit && compinit
