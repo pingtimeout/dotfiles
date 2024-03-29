@@ -25,10 +25,12 @@
     - hugo
     - imagemagick
     - jq
+    - jid
     - karabiner-elements
     - keepassxc
     - languagetool
     - netcat
+    - nvim
     - spotify
     - the_silver_searcher
     - tree
@@ -44,6 +46,7 @@
 
     # Dev stuff
     - awscli
+    - azure-cli
     - colima
     - coreutils
     - diff-so-fancy
@@ -52,6 +55,7 @@
     - gh
     - git
     - gnuplot
+    - google-cloud-sdk
     - helm
     - k9s
     - kubectx
@@ -83,6 +87,7 @@
     - ~/.config/
 
 - link:
+    ~/.asdfrc: asdfrc
     ~/.config/bat: bat
     ~/.config/kitty: kitty
     ~/.config/nvim: nvim
@@ -97,12 +102,62 @@
 - shell:
     - [gem install asciidoctor-diagram --user, Installing Asciidoctor-diagram]
     - [gem install asciidoctor-reducer --user, Installing Asciidoctor-reducer]
+    - ['git clone --recursive https://github.com/sorin-ionescu/prezto.git "${ZDOTDIR:-$HOME}/.zprezto" || git -C "${ZDOTDIR:-$HOME}/.zprezto" pull', Installing Prezto]
+    - ['git clone https://github.com/asdf-vm/asdf.git $HOME/.asdf --branch v0.14.0 || git -C $HOME/.asdf fetch', Installing asdf]
 
+- asdf:
+  - plugin: python
+    global: 3.12.2
+    versions:
+      - 3.12.2
 - tap:
     - sdkman/tap
 
 - brew:
     - sdkman-cli
+
+- asdf:
+  - plugin: github-cli
+    global: latest
+    versions:
+      - latest
+  - plugin: java
+    global: openjdk-21
+    versions:
+      - openjdk-17
+      - openjdk-21
+  - plugin: jmeter
+    global: latest
+    versions:
+      - latest
+  - plugin: kubectl
+    global: latest
+    versions:
+      - latest
+  - plugin: kubectx
+    global: latest
+    versions:
+      - latest
+  - plugin: lazygit
+    global: latest
+    versions:
+      - latest
+  - plugin: maven
+    global: latest
+    versions:
+      - latest
+  - plugin: mvnd
+    global: latest
+    versions:
+      - latest
+  - plugin: nodejs
+    global: latest
+    versions:
+      - latest
+  - plugin: terraform
+    global: latest
+    versions:
+      - latest
 
 - shell:
     - stdout: true
