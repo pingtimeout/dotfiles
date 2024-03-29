@@ -80,25 +80,10 @@
 
 - create:
     - ~/.config/
-    - ~/.config/nvim/
-    - ~/.config/nvim/plugin.d/
 
 - link:
     ~/.config/bat: bat
     ~/.config/kitty: kitty
-    ~/.config/nvim/init.vim: init.vim
-    ~/.config/nvim/plugin.d/ale.vim: vim/ale.vim
-    ~/.config/nvim/plugin.d/close-buffers.vim: vim/close-buffers.vim
-    ~/.config/nvim/plugin.d/nerdtree.vim: vim/nerdtree.vim
-    ~/.config/nvim/plugin.d/numbers.vim: vim/numbers.vim
-    ~/.config/nvim/plugin.d/org-bullets.vim: vim/org-bullets.vim
-    ~/.config/nvim/plugin.d/orgmode.vim: vim/orgmode.vim
-    ~/.config/nvim/plugin.d/tabular.vim: vim/tabular.vim
-    ~/.config/nvim/plugin.d/tagbar.vim: vim/tagbar.vim
-    ~/.config/nvim/plugin.d/vim-LanguageTool.vim: vim/vim-LanguageTool.vim
-    ~/.config/nvim/plugin.d/vim-asciidoctor.vim: vim/vim-asciidoctor.vim
-    ~/.config/nvim/plugin.d/vim-rooter.vim: vim/vim-rooter.vim
-    ~/.config/nvim/plugin.d/vim-yaml-folds.vim: vim/vim-yaml-folds.vim
     ~/.config/yamllint: yamllint
     ~/.gitconfig: gitconfig
     ~/.gitignore: gitignore
