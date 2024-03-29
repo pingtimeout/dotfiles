@@ -84,6 +84,7 @@
 - link:
     ~/.config/bat: bat
     ~/.config/kitty: kitty
+    ~/.config/nvim: nvim
     ~/.config/yamllint: yamllint
     ~/.gitconfig: gitconfig
     ~/.gitignore: gitignore
