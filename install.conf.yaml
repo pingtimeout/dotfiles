@@ -81,7 +81,8 @@
 - cask:
     - font-fira-code
     - font-jetbrains-mono
-    - google-drive
+    - gitx
+    - google-chrome
 
 - create:
     - ~/.config/
