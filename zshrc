@@ -63,6 +63,7 @@ alias vim=nvim
 alias bat='\bat bat --theme=Dracula'
 alias dsf=diff-so-fancy
 alias ls='ls --group-directories-first --color=auto --hyperlink=auto'
+alias jiq='\jiq -q'
 
 if [ -d ~/.local/bin ]; then
     # Ensure that pipx executables are accessible
@@ -115,3 +116,5 @@ PERL_MM_OPT="INSTALL_BASE=/Users/pierrelaporte/perl5"; export PERL_MM_OPT;
 . "$HOME/.asdf/asdf.sh"
 fpath=(${ASDF_DIR}/completions $fpath)
 autoload -Uz compinit && compinit
+
+source ~/.asdf/plugins/java/set-java-home.zsh
