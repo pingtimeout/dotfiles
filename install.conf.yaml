@@ -14,6 +14,7 @@
     - bat
     - caffeine
     - calibre
+    - csshx
     - divvy
     - duti
     - ffmpeg
@@ -22,15 +23,14 @@
     - fzf
     - grc
     - htop
-    - hugo
     - imagemagick
     - jq
     - jid
     - karabiner-elements
     - keepassxc
-    - languagetool
     - netcat
     - nvim
+    - parallel
     - spotify
     - the_silver_searcher
     - tree
@@ -60,8 +60,6 @@
     - k9s
     - kubectx
     - plantuml
-    - pyenv
-    - pyenv-virtualenv
 
     # Yubikey-related apps
     - gnupg
@@ -74,9 +72,6 @@
 - shell:
     - [gem install asciidoctor asciidoctor-diagram --user,Installing Asciidoctor and asciidoctor-diagram]
     - [duti -s org.mozilla.firefox .adoc all, Associating Asciidoc files with firefox]
-
-- tap:
-    - homebrew/cask-fonts
 
 - cask:
     - font-fira-code
