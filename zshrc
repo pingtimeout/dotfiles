@@ -57,13 +57,14 @@ alias -g LRS='| less -RS'
 alias -g S='| sort'
 alias -g T='| tail'
 alias -g US='| sort -u'
-alias -g DSF='-u | diff-so-fancy'
+alias -g DSF='-u | diff-so-fancy | less -RS'
 
 alias vim=nvim
 alias bat='\bat bat --theme=Dracula'
 alias dsf=diff-so-fancy
 alias ls='ls --group-directories-first --color=auto --hyperlink=auto'
 alias jiq='\jiq -q'
+alias icat="kitten icat"
 
 if [ -d ~/.local/bin ]; then
     # Ensure that pipx executables are accessible
