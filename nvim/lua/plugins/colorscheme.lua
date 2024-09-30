@@ -1,12 +1,24 @@
 return {
   -- add gruvbox
-  { "ellisonleao/gruvbox.nvim" },
+  -- { "ellisonleao/gruvbox.nvim" },
 
-  -- Configure LazyVim to load gruvbox
+  -- -- Configure LazyVim to load gruvbox
+  -- {
+  --   "LazyVim/LazyVim",
+  --   opts = {
+  --     -- colorscheme = "gruvbox",
+  --     colorscheme = "gruvbox",
+  --   },
+  -- },
+
   {
-    "LazyVim/LazyVim",
+    "folke/tokyonight.nvim",
     opts = {
-      colorscheme = "monokai-pro",
+      transparent = true,
+      styles = {
+        sidebars = "transparent",
+        floats = "transparent",
+      },
     },
   },
 }
