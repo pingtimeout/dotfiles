@@ -63,3 +63,8 @@ env.partial.source
 # Python #
 ##########
 *.pyc
+
+###############
+# Aider files #
+###############
+.aider*
