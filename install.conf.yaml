@@ -56,6 +56,7 @@
     - gh
     - git
     - google-cloud-sdk
+    - gnuplot
     - helm
     - k9s
     - kubectx
@@ -74,11 +75,12 @@
     - [duti -s org.mozilla.firefox .adoc all, Associating Asciidoc files with firefox]
 
 - cask:
+    - firefox
     - font-fira-code
     - font-jetbrains-mono
     - gitx
     - google-chrome
-    - firefox
+    - kitty
 
 - create:
     - ~/.config/
