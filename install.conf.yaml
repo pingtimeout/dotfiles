@@ -55,7 +55,6 @@
     - docker-compose
     - gh
     - git
-    - gnuplot
     - google-cloud-sdk
     - helm
     - k9s
@@ -79,6 +78,7 @@
     - font-jetbrains-mono
     - gitx
     - google-chrome
+    - firefox
 
 - create:
     - ~/.config/
@@ -150,11 +150,6 @@
   - plugin: nodejs
     global: latest
     versions:
-      - latest
-  - plugin: terraform
-    global: latest
-    versions:
-      - latest
 
 - shell:
     - stdout: true
