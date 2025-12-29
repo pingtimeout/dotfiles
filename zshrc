@@ -1,36 +1,5 @@
-# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
-# Initialization code that may require console input (password prompts, [y/n]
-# confirmations, etc.) must go above this block; everything else may go below.
-if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
-  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
-fi
-
 # Load Homebrew shell integration
 eval "$(/opt/homebrew/bin/brew shellenv)"
-
-#
-# Executes commands at the start of an interactive session.
-#
-# Authors:
-#   Sorin Ionescu <sorin.ionescu@gmail.com>
-#
-
-# Source Prezto.
-if [[ -s "${ZDOTDIR:-$HOME}/.zprezto/init.zsh" ]]; then
-  source "${ZDOTDIR:-$HOME}/.zprezto/init.zsh"
-fi
-
-# Customize to your needs...
-
-# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
-[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
-
-# Source personal files
-if [ -f ~/env/env.source ]; then
-    source ~/env/env.source
-else
-    echo "~/env/ folder not found, nothing was sourced"
-fi
 
 # Define the `up` command to move `n` directories higher
 up () {
@@ -45,8 +14,12 @@ up () {
     UP=''
 }
 
-# Override zprezto `directory` directory that prevents overwriting files
-setopt clobber
+hr () {
+    COUNTER=${1:-10}
+    gseq $COUNTER | tr -d '[:digit:]'
+    gseq -s'=' 80 | tr -d '[:digit:]'
+    gseq $COUNTER | tr -d '[:digit:]'
+}
 
 # Define some aliases to very common commands
 # Commands in caps can be appended at the end of other commands like `grep -v DEBUG /var/log/cassandra/system.log ELS`
@@ -60,15 +33,14 @@ alias -g US='| sort -u'
 alias -g DSF='-u | diff-so-fancy | less -RS'
 
 alias vim=nvim
-alias bat='\bat --theme=Dracula'
-alias dsf=diff-so-fancy
 alias ls='ls --group-directories-first --color=auto --hyperlink=auto'
+alias ll='ls -lh'
 alias jiq='\jiq -q'
 alias icat="kitten icat"
 
 if [ -d ~/.local/bin ]; then
     # Ensure that pipx executables are accessible
-    export PATH="$PATH:/Users/pierrelaporte/.local/bin"
+    export PATH="$PATH:$HOME/.local/bin"
 fi
 
 # Bind ALT-v to enter Vi command mode edition on the current command
@@ -102,30 +74,6 @@ ulimit -n $NOFILE
 NOPROC=$(sysctl -n kern.maxproc)
 ulimit -u $NOPROC
 export PIP_NO_BINARY=grpcio,grpcio-tools
-
-# Enable GPG SSH agent for Yubikey private key support
-export SSH_AUTH_SOCK=$(gpgconf --list-dirs agent-ssh-socket)
-
-PATH="/Users/pierrelaporte/perl5/bin${PATH:+:${PATH}}"; export PATH;
-PERL5LIB="/Users/pierrelaporte/perl5/lib/perl5${PERL5LIB:+:${PERL5LIB}}"; export PERL5LIB;
-PERL_LOCAL_LIB_ROOT="/Users/pierrelaporte/perl5${PERL_LOCAL_LIB_ROOT:+:${PERL_LOCAL_LIB_ROOT}}"; export PERL_LOCAL_LIB_ROOT;
-PERL_MB_OPT="--install_base \"/Users/pierrelaporte/perl5\""; export PERL_MB_OPT;
-PERL_MM_OPT="INSTALL_BASE=/Users/pierrelaporte/perl5"; export PERL_MM_OPT;
-
-# # >>> conda initialize >>>
-# # !! Contents within this block are managed by 'conda init' !!
-# __conda_setup="$('/opt/homebrew/Caskroom/miniforge/base/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
-# if [ $? -eq 0 ]; then
-#     eval "$__conda_setup"
-# else
-#     if [ -f "/opt/homebrew/Caskroom/miniforge/base/etc/profile.d/conda.sh" ]; then
-#         . "/opt/homebrew/Caskroom/miniforge/base/etc/profile.d/conda.sh"
-#     else
-#         export PATH="/opt/homebrew/Caskroom/miniforge/base/bin:$PATH"
-#     fi
-# fi
-# unset __conda_setup
-# # <<< conda initialize <<<
 
 # Load asdf runtime manager
 # Append completions to fpath and initialise completions with ZSH's compinit

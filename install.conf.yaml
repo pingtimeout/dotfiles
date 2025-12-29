@@ -10,12 +10,10 @@
 
 - brew:
     # Utilities
-    - alfred
     - bat
     - caffeine
     - calibre
     - csshx
-    - divvy
     - duti
     - fd
     - ffmpeg
@@ -27,8 +25,6 @@
     - imagemagick
     - jq
     - jid
-    - karabiner-elements
-    - keepassxc
     - netcat
     - nvim
     - parallel
@@ -46,6 +42,7 @@
     - zoom
 
     # Dev stuff
+    - asdf
     - awscli
     - azure-cli
     - colima
@@ -61,16 +58,14 @@
     - k9s
     - kubectx
     - plantuml
-
-    # Yubikey-related apps
-    - gnupg
-    - yubikey-personalization
-    - hopenpgp-tools
-    - ykman
-    - pinentry-mac
     - wget
 
 - shell:
+    - command: (cd linuxify && ./linuxify install)
+      description: Linuxifying MacOS
+      stdout: true
+      stderr: true
+      stdin: true
     - [gem install asciidoctor asciidoctor-diagram --user,Installing Asciidoctor and asciidoctor-diagram]
     - [duti -s org.mozilla.firefox .adoc all, Associating Asciidoc files with firefox]
 
@@ -87,33 +82,23 @@
 
 - link:
     ~/.asdfrc: asdfrc
-    ~/.config/bat: bat
     ~/.config/kitty: kitty
     ~/.config/nvim: nvim
     ~/.config/yamllint: yamllint
     ~/.gitconfig: gitconfig
     ~/.gitignore: gitignore
     ~/.grc: grc-confs
-    ~/.p10k.zsh: p10k.zsh
-    ~/.zpreztorc: zpreztorc
     ~/.zshrc: zshrc
 
 - shell:
     - [gem install asciidoctor-diagram --user, Installing Asciidoctor-diagram]
     - [gem install asciidoctor-reducer --user, Installing Asciidoctor-reducer]
-    - ['git clone --recursive https://github.com/sorin-ionescu/prezto.git "${ZDOTDIR:-$HOME}/.zprezto" || git -C "${ZDOTDIR:-$HOME}/.zprezto" pull', Installing Prezto]
-    - ['git clone https://github.com/asdf-vm/asdf.git $HOME/.asdf --branch v0.14.0 || git -C $HOME/.asdf fetch', Installing asdf]
 
 - asdf:
   - plugin: python
     global: 3.12.2
     versions:
       - 3.12.2
-- tap:
-    - sdkman/tap
-
-- brew:
-    - sdkman-cli
 
 - asdf:
   - plugin: github-cli
@@ -121,10 +106,10 @@
     versions:
       - latest
   - plugin: java
-    global: openjdk-21
+    global: openjdk-25
     versions:
-      - openjdk-17
       - openjdk-21
+      - openjdk-25
   - plugin: jmeter
     global: latest
     versions:
@@ -152,19 +137,11 @@
   - plugin: nodejs
     global: latest
     versions:
+      - latest
 
 - shell:
     - stdout: true
       quiet: true
       command: |
-        echo "The environment is almost ready.  Now this following components should be installed manually with pyenv, pip and sdkman:"
-        echo "* Python 3.x"
-        echo "* OpenJDK 17+"
+        echo "The environment is almost ready.  Now this following components should be installed manually:"
         echo "* JDK Mission Control"
-        echo "* Maven"
-        echo "* Maven Daemon"
-        echo "* Quarkus"
-        echo "* VisualVM"
-        echo ""
-        echo "Additionally, run this command so that Linux commands are used instead of outdated/BSD MacOS ones."
-        echo "cd $HOME/dotfiles/linuxify; ./linuxify install"
