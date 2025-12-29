@@ -1,3 +1,9 @@
+# Enable oh-my-zsh
+export ZSH="$HOME/.oh-my-zsh"
+ZSH_THEME="lukerandall"
+plugins=(git)
+
+source $ZSH/oh-my-zsh.sh
 # Load Homebrew shell integration
 eval "$(/opt/homebrew/bin/brew shellenv)"
 
@@ -32,9 +38,10 @@ alias -g T='| tail'
 alias -g US='| sort -u'
 alias -g DSF='-u | diff-so-fancy | less -RS'
 
+# Create aliases AFTER oh-my-zsh has been loaded so that those ones override the oh-my-zsh defaults
 alias vim=nvim
 alias ls='ls --group-directories-first --color=auto --hyperlink=auto'
-alias ll='ls -lh'
+alias ll='ls --group-directories-first --color=auto --hyperlink=auto -lh'
 alias jiq='\jiq -q'
 alias icat="kitten icat"
 

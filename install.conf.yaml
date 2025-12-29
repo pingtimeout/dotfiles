@@ -7,6 +7,17 @@
 
 - shell:
     - [git submodule update --init --recursive, Installing submodules]
+    - command: |
+        if [ -d "$HOME/.oh-my-zsh/" ]
+        then
+          echo "Oh-my-zsh is already installed, nothing to do"
+        else
+          sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+        fi
+      description: Installing oh-my-zsh
+      stdout: true
+      stderr: true
+      stdin: true
 
 - brew:
     # Utilities
