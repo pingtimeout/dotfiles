@@ -3,7 +3,7 @@
     link:
       relink: true
 
-- clean: ['~']
+- clean: ["~"]
 
 - shell:
     - [git submodule update --init --recursive, Installing submodules]
@@ -54,6 +54,8 @@
 
     # Dev stuff
     - asdf
+    - autoenv
+    - autojump
     - awscli
     - azure-cli
     - colima
@@ -77,8 +79,14 @@
       stdout: true
       stderr: true
       stdin: true
-    - [gem install asciidoctor asciidoctor-diagram --user,Installing Asciidoctor and asciidoctor-diagram]
-    - [duti -s org.mozilla.firefox .adoc all, Associating Asciidoc files with firefox]
+    - [
+        gem install asciidoctor asciidoctor-diagram --user,
+        Installing Asciidoctor and asciidoctor-diagram,
+      ]
+    - [
+        duti -s org.mozilla.firefox .adoc all,
+        Associating Asciidoc files with firefox,
+      ]
 
 - cask:
     - firefox
@@ -106,49 +114,49 @@
     - [gem install asciidoctor-reducer --user, Installing Asciidoctor-reducer]
 
 - asdf:
-  - plugin: python
-    global: 3.12.2
-    versions:
-      - 3.12.2
+    - plugin: python
+      global: 3.12.2
+      versions:
+        - 3.12.2
 
 - asdf:
-  - plugin: github-cli
-    global: latest
-    versions:
-      - latest
-  - plugin: java
-    global: openjdk-25
-    versions:
-      - openjdk-21
-      - openjdk-25
-  - plugin: jmeter
-    global: latest
-    versions:
-      - latest
-  - plugin: kubectl
-    global: latest
-    versions:
-      - latest
-  - plugin: kubectx
-    global: latest
-    versions:
-      - latest
-  - plugin: lazygit
-    global: latest
-    versions:
-      - latest
-  - plugin: maven
-    global: latest
-    versions:
-      - latest
-  - plugin: mvnd
-    global: latest
-    versions:
-      - latest
-  - plugin: nodejs
-    global: latest
-    versions:
-      - latest
+    - plugin: github-cli
+      global: latest
+      versions:
+        - latest
+    - plugin: java
+      global: openjdk-25
+      versions:
+        - openjdk-21
+        - openjdk-25
+    - plugin: jmeter
+      global: latest
+      versions:
+        - latest
+    - plugin: kubectl
+      global: latest
+      versions:
+        - latest
+    - plugin: kubectx
+      global: latest
+      versions:
+        - latest
+    - plugin: lazygit
+      global: latest
+      versions:
+        - latest
+    - plugin: maven
+      global: latest
+      versions:
+        - latest
+    - plugin: mvnd
+      global: latest
+      versions:
+        - latest
+    - plugin: nodejs
+      global: latest
+      versions:
+        - latest
 
 - shell:
     - stdout: true
