@@ -26,7 +26,6 @@
 # Logs and databases #
 ######################
 *.log
-*.sql
 *.sqlite
 
 ######################
@@ -46,6 +45,7 @@ Thumbs.db
 *~
 *.swp
 .idea/
+.settings/
 *.iml
 
 ##############
@@ -63,8 +63,20 @@ env.partial.source
 # Python #
 ##########
 *.pyc
+.venv/
 
 ###############
 # Aider files #
 ###############
 .aider*
+.env
+.env.leave
+deepseek/
+
+################
+# VSCode files #
+################
+.bloop/
+.metals/
+.vscode/
+
