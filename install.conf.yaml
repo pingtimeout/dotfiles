@@ -105,6 +105,7 @@
     ~/.config/nvim: nvim
     ~/.config/yamllint: yamllint
     ~/.gitconfig: gitconfig
+    ~/.gitattributes: gitattributes
     ~/.gitignore: gitignore
     ~/.grc: grc-confs
     ~/.zshrc: zshrc

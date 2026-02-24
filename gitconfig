@@ -19,6 +19,7 @@
     excludesfile = /Users/plaporte/.gitignore
     #pager = less --tabs=4 -RFX
     pager = diff-so-fancy | less --tabs=4 -RFX
+    attributesfile = /Users/plaporte/.gitattributes
 [help]
     autocorrect = 1
 [merge]
@@ -46,3 +47,5 @@
     stripLeadingSymbols = true
 [init]
 	defaultBranch = main
+[diff "dyff"]
+	command = "dyff_between() { dyff --color on between --omit-header \"$2\" \"$5\"; }; dyff_between"
