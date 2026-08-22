@@ -37,12 +37,18 @@
     - dyff
     - fswatch
     - fzf
+    - gh
     - git-delta
     - gnuplot
     - helm
     - htop
+    - jmeter
     - jq
     - k9s
+    - kubectx
+    - kubernetes-cli
+    - lazygit
+    - macmon
     - nvim
     - parallel
     - ripgrep
