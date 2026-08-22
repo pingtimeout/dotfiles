@@ -6,6 +6,11 @@
 
 - shell:
   - [git submodule update --init --recursive, Installing submodules]
+  - command: (cd linuxify && ./linuxify install)
+    description: Linuxifying MacOS
+    stdout: true
+    stderr: true
+    stdin: true
 
 #- link:
 
