@@ -27,14 +27,22 @@
     stdin: true
 
 - brew:
-    # Utilities
+    - asdf
+    - autoenv
+    - autojump
     - bat
+    - coreutils
     - csshx
     - duti
+    - dyff
     - fswatch
     - fzf
+    - git-delta
+    - gnuplot
+    - helm
     - htop
     - jq
+    - k9s
     - nvim
     - parallel
     - ripgrep
@@ -42,15 +50,6 @@
     - tree
     - tree-sitter
     - universal-ctags
-
-    # Dev stuff
-    - asdf
-    - autoenv
-    - autojump
-    - coreutils
-    - gnuplot
-    - helm
-    - k9s
     - wget
 
 - cask:
@@ -59,3 +58,7 @@
     - gitx
     - kitty
 
+- link:
+    ~/.gitconfig: gitconfig
+    ~/.gitattributes: gitattributes
+    ~/.gitignore: gitignore

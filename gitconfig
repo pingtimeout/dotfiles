@@ -1,0 +1,39 @@
+[user]
+    email = pierre@pingtimeout.fr
+    name = Pierre Laporte
+[push]
+    default = current
+[alias]
+    st = status
+    pr = pull --rebase
+    dc = diff --cached
+    wip = !git add -u && git commit -m "WIP"
+    delete-merged-branches = !git branch --merged | egrep -v '^\\*|master' | xargs git branch -d
+    tree = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow bold)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset %C(cyan)%GS%Creset' --abbrev-commit --all
+    pushit = !open "spotify:track:0GugYsbXWlfLOgsmtsdxzg" && git push
+    it = !git init && git commit -m \"Initial commit\" --allow-empty
+[color]
+    ui = true
+[core]
+    editor = nvim
+    excludesfile = /Users/plaporte/.gitignore
+    #pager = less --tabs=4 -RFX
+    pager = delta
+    attributesfile = /Users/plaporte/.gitattributes
+[interactive]
+    diffFilter = delta --color-only
+[delta]
+    navigate = true  # use n and N to move between diff sections
+[merge]
+    conflictStyle = zdiff3
+[help]
+    autocorrect = 1
+[diff "gzip"]
+    binary = true
+    textconv = /usr/bin/gzcat
+[rebase]
+    autoStash = true
+[init]
+	defaultBranch = main
+[diff "dyff"]
+	command = "dyff_between() { dyff --color on between --omit-header \"$2\" \"$5\"; }; dyff_between"
