@@ -26,6 +26,36 @@
     stderr: true
     stdin: true
 
-#- link:
+- brew:
+    # Utilities
+    - bat
+    - csshx
+    - duti
+    - fswatch
+    - fzf
+    - htop
+    - jq
+    - nvim
+    - parallel
+    - ripgrep
+    - the_silver_searcher
+    - tree
+    - tree-sitter
+    - universal-ctags
 
+    # Dev stuff
+    - asdf
+    - autoenv
+    - autojump
+    - coreutils
+    - gnuplot
+    - helm
+    - k9s
+    - wget
+
+- cask:
+    - font-fira-code
+    - font-jetbrains-mono
+    - gitx
+    - kitty
 
