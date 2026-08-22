@@ -35,6 +35,7 @@
     - csshx
     - duti
     - dyff
+    - fd
     - fswatch
     - fzf
     - gh
@@ -55,6 +56,7 @@
     - the_silver_searcher
     - tree
     - tree-sitter
+    - tree-sitter-cli
     - universal-ctags
     - wget
 
@@ -68,26 +70,4 @@
     ~/.gitconfig: gitconfig
     ~/.gitattributes: gitattributes
     ~/.gitignore: gitignore
-
-#- asdf:
-#    - plugin: python
-#      global: 3.12.2
-#      versions:
-#        - latest:3.12
-#    - plugin: java
-#      global: openjdk-25
-#      versions:
-#        - openjdk-21
-#        - openjdk-25
-#    - plugin: maven
-#      global: latest
-#      versions:
-#        - latest
-#    - plugin: mvnd
-#      global: latest
-#      versions:
-#        - latest
-#    - plugin: nodejs
-#      global: latest
-#      versions:
-#        - latest
+    ~/.config/nvim: nvim
