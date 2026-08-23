@@ -67,7 +67,8 @@
     - kitty
 
 - link:
-    ~/.gitconfig: gitconfig
-    ~/.gitattributes: gitattributes
-    ~/.gitignore: gitignore
+    ~/.asdfrc: asdfrc
     ~/.config/nvim: nvim
+    ~/.gitattributes: gitattributes
+    ~/.gitconfig: gitconfig
+    ~/.gitignore: gitignore
