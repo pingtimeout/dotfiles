@@ -72,3 +72,4 @@
     ~/.gitattributes: gitattributes
     ~/.gitconfig: gitconfig
     ~/.gitignore: gitignore
+    ~/.zshrc: zshrc
