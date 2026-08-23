@@ -69,6 +69,7 @@
 - link:
     ~/.asdfrc: asdfrc
     ~/.config/nvim: nvim
+    ~/.config/kitty: kitty
     ~/.gitattributes: gitattributes
     ~/.gitconfig: gitconfig
     ~/.gitignore: gitignore
