@@ -72,3 +72,18 @@ target/
 .metals/
 .vscode/
 
+########
+# asdf #
+########
+.tool-versions
+
+#######################
+# Treehouse Worktrees #
+#######################
+treehouse.json
+
+##########################
+# Claude Code #
+##########################
+.mcp.json
+**/.claude/settings.local.json
