@@ -52,6 +52,7 @@
     - macmon
     - nvim
     - parallel
+    - pipx
     - ripgrep
     - the_silver_searcher
     - tree
