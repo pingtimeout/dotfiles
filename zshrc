@@ -48,10 +48,6 @@ fi
 # Load Homebrew shell integration
 eval "$(/opt/homebrew/bin/brew shellenv)"
 
-# Load asdf and ensure runtimes are available and set JAVA_HOME
-export PATH="${ASDF_DATA_DIR:-$HOME/.asdf}/shims:$PATH"
-source ~/.asdf/plugins/java/set-java-home.zsh
-
 # The `up` command moves `n` directories higher
 up () {
     COUNTER=$1
@@ -149,3 +145,7 @@ case ":$PATH:" in
   *) export PATH="$PNPM_HOME/bin:$PATH" ;;
 esac
 # pnpm end
+
+# Load asdf and ensure runtimes are available and set JAVA_HOME
+export PATH="${ASDF_DATA_DIR:-$HOME/.asdf}/shims:$PATH"
+source ~/.asdf/plugins/java/set-java-home.zsh
