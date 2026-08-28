@@ -2,7 +2,8 @@
 
 set -e
 
-CONFIG="install.conf.yaml"
+CONFIG="${1:-install.conf.yaml}"
+[ "$#" -gt 0 ] && shift
 DOTBOT_DIR="dotbot"
 
 DOTBOT_BIN="bin/dotbot"

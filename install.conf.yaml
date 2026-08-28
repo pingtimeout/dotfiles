@@ -10,7 +10,9 @@
         git submodule update --init --recursive
     - description: Linuxifying MacOS
       command: |-
-        cd linuxify && ./linuxify install
+        if [ "$(uname)" = "Darwin" ]; then
+          cd linuxify && ./linuxify install
+        fi
       stdout: true
       stderr: true
       stdin: true
