@@ -69,6 +69,15 @@ hr () {
     gseq $COUNTER | tr -d '[:digit:]'
 }
 
+mkdirtoday() {
+  current_date=$(date '+%Y-%m-%d')
+  if [ -z "$1" ]; then
+    echo "Missing argument: FOLDER_NAME">&2
+    return 1
+  fi
+  mkdir "${current_date}-$1"
+}
+
 # The git-fetch-pr command moves HEAD to the head of a given PR in `origin` or `upstream`
 git-fetch-pr() {
   if [ -n "$1" ]
@@ -145,6 +154,10 @@ case ":$PATH:" in
   *) export PATH="$PNPM_HOME/bin:$PATH" ;;
 esac
 # pnpm end
+
+# Force homebrew to put applications in ~/Applications/ instead of /Applications/
+# That way, homebrew does not require root privileges.
+export HOMEBREW_CASK_OPTS="--appdir=~/Applications"
 
 # Load asdf and ensure runtimes are available and set JAVA_HOME
 export PATH="${ASDF_DATA_DIR:-$HOME/.asdf}/shims:$PATH"
