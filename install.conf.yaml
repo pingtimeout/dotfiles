@@ -76,3 +76,8 @@
     ~/.gitconfig: gitconfig
     ~/.gitignore: gitignore
     ~/.zshrc: zshrc
+
+- shell:
+    - description: Open Asciidoc files with Google Chrome
+      command: |-
+        duti -s com.google.Chrome adoc all
