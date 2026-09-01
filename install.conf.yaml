@@ -26,6 +26,9 @@
       stderr: true
       stdin: true
 
+- tap:
+    - yoanbernabeu/tap
+
 - brew:
     - asdf
     - autoenv
@@ -40,6 +43,7 @@
     - fzf
     - gh
     - git-delta
+    - grepai
     - gnuplot
     - helm
     - htop
