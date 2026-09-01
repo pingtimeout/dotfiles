@@ -162,3 +162,12 @@ export HOMEBREW_CASK_OPTS="--appdir=~/Applications"
 # Load asdf and ensure runtimes are available and set JAVA_HOME
 export PATH="${ASDF_DATA_DIR:-$HOME/.asdf}/shims:$PATH"
 source ~/.asdf/plugins/java/set-java-home.zsh
+
+# open(): route .adoc files to Google Chrome, pass everything else through
+open() {
+  if [[ "${1:-}" == *.adoc && -f "${1:-}" ]]; then
+    /usr/bin/open -a 'Google Chrome' "$@"
+  else
+    /usr/bin/open "$@"
+  fi
+}
