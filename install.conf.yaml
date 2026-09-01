@@ -2,29 +2,29 @@
     link:
       relink: true
 
-- clean: ['~']
+- clean: ["~"]
 
 - shell:
-  - description: Installing submodules
-    command: |-
-      git submodule update --init --recursive
-  - description: Linuxifying MacOS
-    command: |-
-      cd linuxify && ./linuxify install
-    stdout: true
-    stderr: true
-    stdin: true
-  - description: Installing oh-my-zsh
-    command: |-
-      if [ -d "$HOME/.oh-my-zsh/" ]
-      then
-        echo "Oh-my-zsh is already installed, nothing to do"
-      else
-        sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
-      fi
-    stdout: true
-    stderr: true
-    stdin: true
+    - description: Installing submodules
+      command: |-
+        git submodule update --init --recursive
+    - description: Linuxifying MacOS
+      command: |-
+        cd linuxify && ./linuxify install
+      stdout: true
+      stderr: true
+      stdin: true
+    - description: Installing oh-my-zsh
+      command: |-
+        if [ -d "$HOME/.oh-my-zsh/" ]
+        then
+          echo "Oh-my-zsh is already installed, nothing to do"
+        else
+          sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+        fi
+      stdout: true
+      stderr: true
+      stdin: true
 
 - brew:
     - asdf
