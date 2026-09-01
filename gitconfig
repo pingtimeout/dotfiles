@@ -16,10 +16,10 @@
     ui = true
 [core]
     editor = nvim
-    excludesfile = /Users/plaporte/.gitignore
+    excludesfile = ~/.gitignore
     #pager = less --tabs=4 -RFX
     pager = delta
-    attributesfile = /Users/plaporte/.gitattributes
+    attributesfile = ~/.gitattributes
 [interactive]
     diffFilter = delta --color-only
 [delta]
