@@ -45,8 +45,8 @@
     - fzf
     - gh
     - git-delta
-    - grepai
     - gnuplot
+    - grepai
     - helm
     - htop
     - jmeter
@@ -61,6 +61,7 @@
     - pipx
     - ripgrep
     - the_silver_searcher
+    - tmux
     - tree
     - tree-sitter
     - tree-sitter-cli
