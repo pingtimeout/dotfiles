@@ -1,3 +1,6 @@
+# vim: foldmethod=marker
+
+# Oh-my-zsh {{{
 export ZSH="$HOME/.oh-my-zsh"
 ZSH_THEME="lukerandall"
 
@@ -35,6 +38,20 @@ COMPLETION_WAITING_DOTS="true"
 plugins=(git autojump asdf)
 
 source $ZSH/oh-my-zsh.sh
+# }}}
+
+# Homebrew & asdf {{{
+# Load Homebrew shell integration
+eval "$(/opt/homebrew/bin/brew shellenv)"
+
+# Force homebrew to put applications in ~/Applications/ instead of /Applications/
+# That way, homebrew does not require root privileges.
+export HOMEBREW_CASK_OPTS="--appdir=~/Applications"
+
+# Load asdf and ensure runtimes are available and set JAVA_HOME
+export PATH="${ASDF_DATA_DIR:-$HOME/.asdf}/shims:$PATH"
+source ~/.asdf/plugins/java/set-java-home.zsh
+# }}}
 
 # User configuration
 
@@ -45,10 +62,8 @@ else
   export EDITOR='nvim'
 fi
 
-# Load Homebrew shell integration
-eval "$(/opt/homebrew/bin/brew shellenv)"
-
-# The `up` command moves `n` directories higher
+# Utility functions and aliases {{{
+# The `up` command moves `n` directories higher {{{
 up () {
     COUNTER=$1
     while [[ $COUNTER -gt 0 ]]
@@ -60,15 +75,18 @@ up () {
     cd $UP
     UP=''
 }
+# }}}
 
-# The `hr` command creates some space
+# The `hr` command creates some space {{{
 hr () {
     COUNTER=${1:-10}
     gseq $COUNTER | tr -d '[:digit:]'
     gseq -s'=' 80 | tr -d '[:digit:]'
     gseq $COUNTER | tr -d '[:digit:]'
 }
+# }}}
 
+# The `mkdirtoday` command creates a folder named after the current date {{{
 mkdirtoday() {
   current_date=$(date '+%Y-%m-%d')
   if [ -z "$1" ]; then
@@ -77,8 +95,9 @@ mkdirtoday() {
   fi
   mkdir "${current_date}-$1"
 }
+# }}}
 
-# The git-fetch-pr command moves HEAD to the head of a given PR in `origin` or `upstream`
+# The git-fetch-pr command moves to the head of a given PR {{{
 git-fetch-pr() {
   if [ -n "$1" ]
   then
@@ -91,14 +110,9 @@ git-fetch-pr() {
       && git log -1
   fi
 }
+# }}}
 
-# Define some aliases to variants of `less`
-alias -g EL='|& less'
-alias -g ELRS='|& less -RS'
-alias -g L="| less"
-alias -g LRS='| less -RS'
-
-# Some tmux and treehouse helpers
+# The `tnew` and `tat` functions creates/attach to a tmux session {{{
 alias tat='tmux attach -t'
 tnew() {
   if [ -z "$1" ]
@@ -109,61 +123,70 @@ tnew() {
   fi
   tmux new-session -s "$session_name" -c "$PWD"
 }
+# }}}
+
+# The `thcd` function changes cwd to a git worktree identified by a name {{{
 alias th='treehouse'
 thcd() {
   cd "$(treehouse ls | grep "$1" | grep 'Path:' | awk '{print $2}' | sed 's/\x1b\[[0-9;]*m//g')"
 }
+# }}}
+
+# Other aliases {{{
+# Should be created AFTER oh-my-zsh has been loaded so that those ones override the oh-my-zsh defaults
+
+# Variants of `less`
+alias -g EL='|& less'
+alias -g ELRS='|& less -RS'
+alias -g L="| less"
+alias -g LRS='| less -RS'
 
 alias pbc=pbcopy
 alias grip='\grip -b'
 
-# Create aliases AFTER oh-my-zsh has been loaded so that those ones override the oh-my-zsh defaults
 alias vim=nvim
 alias ls='ls --group-directories-first --color=auto --hyperlink=auto'
 alias ll='ls --group-directories-first --color=auto --hyperlink=auto -lh'
+# }}}
+# }}}
 
 # Bin CTRL-g to enter Vi command mode edition on the current command
 autoload -Uz edit-command-line
 zle -N edit-command-line
 bindkey '^G' edit-command-line
 
-# Ensure that pipx executables are accessible
+# Ensure that pipx executables are accessible {{{
 if [ -d ~/.local/bin ]; then
     export PATH="$PATH:$HOME/.local/bin"
 fi
+# }}}
 
 # Map the `s` command to Kitty ssh helper to handle terminfo mess
 alias s='kitty +kitten ssh'
 
-# Source Linuxify so that GNU binaries are first in PATH
+# Source Linuxify so that GNU binaries are first in PATH {{{
 if [[ -s "$HOME/.linuxify" ]]; then
   source "$HOME/.linuxify"
 fi
+# }}}
 
-# Autoenv should source .env at dir entry and .env.leave at dir exit
+# Autoenv {{{
 AUTOENV_ENABLE_LEAVE=1
 source $(brew --prefix autoenv)/activate.sh
+# }}}
 
 # Allow wildcards to resolve to nothing without erroring out
 setopt NULL_GLOB
 
-# pnpm
+# Add pnpm to path {{{
 export PNPM_HOME="$HOME/Library/pnpm"
 case ":$PATH:" in
   *":$PNPM_HOME/bin:"*) ;;
   *) export PATH="$PNPM_HOME/bin:$PATH" ;;
 esac
-# pnpm end
+# }}}
 
-# Force homebrew to put applications in ~/Applications/ instead of /Applications/
-# That way, homebrew does not require root privileges.
-export HOMEBREW_CASK_OPTS="--appdir=~/Applications"
-
-# Load asdf and ensure runtimes are available and set JAVA_HOME
-export PATH="${ASDF_DATA_DIR:-$HOME/.asdf}/shims:$PATH"
-source ~/.asdf/plugins/java/set-java-home.zsh
-
-# open(): route .adoc files to Google Chrome, pass everything else through
+# Route `open` command for .adoc files to Google Chrome {{{
 open() {
   if [[ "${1:-}" == *.adoc && -f "${1:-}" ]]; then
     /usr/bin/open -a 'Google Chrome' "$@"
@@ -171,3 +194,4 @@ open() {
     /usr/bin/open "$@"
   fi
 }
+# }}}
