@@ -40,6 +40,12 @@ plugins=(git autojump asdf)
 source $ZSH/oh-my-zsh.sh
 # }}}
 
+# Source Linuxify so that GNU binaries are first in PATH {{{
+if [[ -s "$HOME/.linuxify" ]]; then
+  source "$HOME/.linuxify"
+fi
+# }}}
+
 # Homebrew & asdf {{{
 # Load Homebrew shell integration
 eval "$(/opt/homebrew/bin/brew shellenv)"
@@ -49,6 +55,7 @@ eval "$(/opt/homebrew/bin/brew shellenv)"
 export HOMEBREW_CASK_OPTS="--appdir=~/Applications"
 
 # Load asdf and ensure runtimes are available and set JAVA_HOME
+# Note that asdf MUST be loaded after homebrew and linuxify so that the provided packages are first in the path.
 export PATH="${ASDF_DATA_DIR:-$HOME/.asdf}/shims:$PATH"
 source ~/.asdf/plugins/java/set-java-home.zsh
 # }}}
@@ -163,12 +170,6 @@ fi
 
 # Map the `s` command to Kitty ssh helper to handle terminfo mess
 alias s='kitty +kitten ssh'
-
-# Source Linuxify so that GNU binaries are first in PATH {{{
-if [[ -s "$HOME/.linuxify" ]]; then
-  source "$HOME/.linuxify"
-fi
-# }}}
 
 # Autoenv {{{
 AUTOENV_ENABLE_LEAVE=1
