@@ -36,6 +36,7 @@
     - autoenv
     - autojump
     - bat
+    - btop
     - coreutils
     - csshx
     - duti
