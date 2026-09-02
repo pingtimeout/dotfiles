@@ -77,9 +77,10 @@
 
 - link:
     ~/.asdfrc: asdfrc
-    ~/.config/nvim: nvim
     ~/.config/kitty: kitty
+    ~/.config/nvim: nvim
     ~/.gitattributes: gitattributes
     ~/.gitconfig: gitconfig
     ~/.gitignore: gitignore
+    ~/.tmux.conf: tmux.conf
     ~/.zshrc: zshrc
