@@ -120,6 +120,7 @@ git-fetch-pr() {
 # }}}
 
 # The `tnew` and `tat` functions creates/attach to a tmux session {{{
+alias tls='tmux ls'
 alias tat='tmux attach -t'
 tnew() {
   if [ -z "$1" ]
