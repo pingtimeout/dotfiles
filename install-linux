@@ -1,7 +1,49 @@
 #!/usr/bin/env bash
-
-set -e
+# vim: foldmethod=marker
 
 BASEDIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 
-exec "${BASEDIR}/install" install.conf.yaml "${@}" --except brew cask
+# {{{ First, we call dotbot to setup subodules, omz and install dotfiles
+"${BASEDIR}/install" install.conf.yaml
+# }}}
+
+# {{{ Install apt packages
+apt install --yes \
+  asdf \
+  autoenv \
+  autojump \
+  bat \
+  btop \
+  coreutils \
+  csshx \
+  duti \
+  dyff \
+  fd \
+  fswatch \
+  fzf \
+  gh \
+  git-delta \
+  gnuplot \
+  grepai \
+  helm \
+  htop \
+  jmeter \
+  jq \
+  k9s \
+  kubectx \
+  kubernetes-cli \
+  lazygit \
+  macmon \
+  nvim \
+  pandoc \
+  parallel \
+  pipx \
+  ripgrep \
+  the_silver_searcher \
+  tmux \
+  tree \
+  tree-sitter \
+  tree-sitter-cli \
+  universal-ctags \
+  wget
+# }}}

@@ -8,14 +8,6 @@
     - description: Installing submodules
       command: |-
         git submodule update --init --recursive
-    - description: Linuxifying MacOS
-      command: |-
-        if [ "$(uname)" = "Darwin" ]; then
-          cd linuxify && ./linuxify install
-        fi
-      stdout: true
-      stderr: true
-      stdin: true
     - description: Installing oh-my-zsh
       command: |-
         if [ -d "$HOME/.oh-my-zsh/" ]
@@ -27,54 +19,6 @@
       stdout: true
       stderr: true
       stdin: true
-
-- tap:
-    - yoanbernabeu/tap
-
-- brew:
-    - asdf
-    - autoenv
-    - autojump
-    - bat
-    - btop
-    - coreutils
-    - csshx
-    - duti
-    - dyff
-    - fd
-    - fswatch
-    - fzf
-    - gh
-    - git-delta
-    - gnuplot
-    - grepai
-    - helm
-    - htop
-    - jmeter
-    - jq
-    - k9s
-    - kubectx
-    - kubernetes-cli
-    - lazygit
-    - macmon
-    - nvim
-    - parallel
-    - pipx
-    - ripgrep
-    - the_silver_searcher
-    - tmux
-    - tree
-    - tree-sitter
-    - tree-sitter-cli
-    - universal-ctags
-    - wget
-
-- cask:
-    - font-fira-code
-    - font-jetbrains-mono
-    - font-symbols-only-nerd-font
-    - gitx
-    - kitty
 
 - link:
     ~/.asdfrc: asdfrc
