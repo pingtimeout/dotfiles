@@ -2,8 +2,7 @@
 
 set -e
 
-CONFIG="${1:-install.conf.yaml}"
-[ "$#" -gt 0 ] && shift
+CONFIG="install.conf.yaml"
 DOTBOT_DIR="dotbot"
 
 DOTBOT_BIN="bin/dotbot"
@@ -15,7 +14,9 @@ git submodule update --init --recursive "${DOTBOT_DIR}"
 
 "${BASEDIR}/${DOTBOT_DIR}/${DOTBOT_BIN}" \
   -d "${BASEDIR}" \
-  --plugin-dir dotbot-brew \
+  --plugin-dir dotbot-apt \
   --plugin-dir dotbot-asdf \
+  --plugin-dir dotbot-brew \
+  --plugin-dir dotbot-ifplatform \
   -c "${CONFIG}" \
-  "${@}"
+  "$@"

@@ -1,49 +1,44 @@
 #!/usr/bin/env bash
 # vim: foldmethod=marker
 
+set -e
+
 BASEDIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 
-# {{{ First, we call dotbot to setup subodules, omz and install dotfiles
-"${BASEDIR}/install" install.conf.yaml
+# {{{ Disable Homebrew and APT confirmations for batch installs
+export HOMEBREW_NO_ASK=1
+export HOMEBREW_NO_REQUIRE_TAP_TRUST=1
+export DEBIAN_FRONTEND=noninteractive
 # }}}
 
-# {{{ Install apt packages
+# {{{ Dotbot requires git and Python 3.x
+apt update --yes
 apt install --yes \
-  asdf \
-  autoenv \
-  autojump \
-  bat \
-  btop \
-  coreutils \
-  csshx \
-  duti \
-  dyff \
-  fd \
-  fswatch \
-  fzf \
-  gh \
-  git-delta \
-  gnuplot \
-  grepai \
-  helm \
-  htop \
-  jmeter \
-  jq \
-  k9s \
-  kubectx \
-  kubernetes-cli \
-  lazygit \
-  macmon \
-  nvim \
-  pandoc \
-  parallel \
-  pipx \
-  ripgrep \
-  the_silver_searcher \
-  tmux \
-  tree \
-  tree-sitter \
-  tree-sitter-cli \
-  universal-ctags \
-  wget
+  git \
+  python3
+# }}}
+
+# {{{ Skip Github host SSL confirmation for batch installs
+mkdir -p ~/.ssh
+touch ~/.ssh/known_hosts
+if [ ! -n "$(grep "^github.com " ~/.ssh/known_hosts)" ]; then
+  ssh-keyscan github.com >>~/.ssh/known_hosts 2>/dev/null
+fi
+# }}}
+
+# {{{ Init submodules as some are required dotbot plugins
+git -C "${BASEDIR}" submodule update --init --recursive
+# }}}
+
+# {{{ Delegate the rest to dotbot but exclude asdf at is is not yet installed
+"${BASEDIR}/install" --except asdf
+# }}}
+
+# {{{ Now invoke dotbot again only for asdf in a new shell to reload the path
+eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+zsh -c "'${BASEDIR}/install' --only asdf"
+# }}}
+
+# {{{ Set shell to zsh
+usermod -s /home/linuxbrew/.linuxbrew/bin/zsh $(id --user --name)
 # }}}

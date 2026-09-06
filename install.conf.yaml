@@ -4,28 +4,162 @@
 
 - clean: ["~"]
 
+# On vanilla Ubuntu images, curl is not installed and it is required by Homebrew
+- ifubuntu:
+    - apt:
+        - curl
+
 - shell:
-    - description: Installing submodules
+    - description: Installing Homebrew
+      quiet: true
       command: |-
-        git submodule update --init --recursive
+        if command -v brew >/dev/null 2>&1
+        then
+          echo "Homebrew is already installed, nothing to do"
+        else
+          /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+        fi
+
+# Linuxify MacOS but stay on the current shell with the "N" answer
+- ifmacos:
+    - shell:
+        - description: Linuxifying MacOS
+          quiet: true
+          command: cd linuxify && ./linuxify install <<<"N"
+
+- tap:
+    - yoanbernabeu/tap
+
+- brew:
+    - asdf
+    - autoenv
+    - autojump
+    - bat
+    - btop
+    - coreutils
+    - csshx
+    - dyff
+    - fd
+    - fswatch
+    - fzf
+    - gh
+    - git-delta
+    - gnuplot
+    - grepai
+    - helm
+    - htop
+    - jmeter
+    - jq
+    - k9s
+    - kubectx
+    - kubernetes-cli
+    - lazygit
+    - nvim
+    - pandoc
+    - parallel
+    - pipx
+    - ripgrep
+    - the_silver_searcher
+    - tmux
+    - tree
+    - tree-sitter
+    - tree-sitter-cli
+    - universal-ctags
+    - wget
+
+# MacOS specific packages
+- ifmacos:
+    - brew:
+        - duti
+        - macmon
+
+    - cask:
+        - font-fira-code
+        - font-jetbrains-mono
+        - font-symbols-only-nerd-font
+        - gitx
+        - kitty
+
+- shell:
     - description: Installing oh-my-zsh
+      quiet: true
       command: |-
+        eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
         if [ -d "$HOME/.oh-my-zsh/" ]
         then
           echo "Oh-my-zsh is already installed, nothing to do"
         else
-          sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+          cd /tmp/
+          curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh -o install.sh
+          chmod +x install.sh
+          ./install.sh --unattended
+          rm -f ./install.sh
         fi
-      stdout: true
-      stderr: true
-      stdin: true
+
+    - description: Create ~/.config
+      quiet: true
+      command: |-
+        mkdir -p ~/.config
 
 - link:
-    ~/.asdfrc: asdfrc
-    ~/.config/kitty: kitty
-    ~/.config/nvim: nvim
-    ~/.gitattributes: gitattributes
-    ~/.gitconfig: gitconfig
-    ~/.gitignore: gitignore
-    ~/.tmux.conf: tmux.conf
-    ~/.zshrc: zshrc
+    ~/.asdfrc:
+      force: true
+      path: asdfrc
+    ~/.config/kitty:
+      force: true
+      path: kitty
+    ~/.config/nvim:
+      force: true
+      path: nvim
+    ~/.gitattributes:
+      force: true
+      path: gitattributes
+    ~/.gitconfig:
+      force: true
+      path: gitconfig
+    ~/.gitignore:
+      force: true
+      path: gitignore
+    ~/.tmux.conf:
+      force: true
+      path: tmux.conf
+    ~/.zshrc:
+      force: true
+      path: zshrc
+
+- ifubuntu:
+    - apt:
+        - build-essential
+        - libbz2-dev
+        - libffi-dev
+        - liblzma-dev
+        - libncursesw5-dev
+        - libreadline-dev
+        - libsqlite3-dev
+        - libssl-dev
+        - libxml2-dev
+        - libxmlsec1-dev
+        - llvm
+        - make
+        - tk-dev
+        - wget
+        - xz-utils
+        - zlib1g-dev
+        - zsh
+
+- asdf:
+    - plugin: java
+      url: https://github.com/halcyon/asdf-java.git
+      versions:
+        - openjdk-25
+      default: openjdk-25
+    - plugin: nodejs
+      url: https://github.com/asdf-vm/asdf-nodejs.git
+      versions:
+        - latest
+      default: latest
+    - plugin: python
+      url: https://github.com/tuvistavie/asdf-python.git
+      versions:
+        - latest
+      default: latest

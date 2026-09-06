@@ -48,7 +48,14 @@ fi
 
 # Homebrew & asdf {{{
 # Load Homebrew shell integration
-eval "$(/opt/homebrew/bin/brew shellenv)"
+if [ -d /opt/homebrew/ ]
+then
+  export BREW_HOME=/opt/homebrew
+elif [ -d /home/linuxbrew/.linuxbrew/ ]
+then
+  export BREW_HOME=/home/linuxbrew/.linuxbrew
+fi
+eval "$($BREW_HOME/bin/brew shellenv)"
 
 # Force homebrew to put applications in ~/Applications/ instead of /Applications/
 # That way, homebrew does not require root privileges.
