@@ -64,3 +64,26 @@ defaults write com.apple.terminal StringEncodings -array 4
 for app in Finder Dock Mail Safari iTunes iCal Address\ Book SystemUIServer; do killall "$app" >/dev/null 2>&1; done
 echo "OSX Hacks Done. Note that some of these changes require a logout/restart to take effect."
 # }}}
+
+# {{{ Enable MacOS window management keyboard shortcuts
+set_hotkey() {
+  # The modifier value 1966080 represents Shift+Control+Option+Command (the “Hyper” combination)
+  # Use  https://github.com/feedthejim/hyperkey to remap caps lock to hyper
+  defaults write com.apple.symbolichotkeys AppleSymbolicHotKeys -dict-add "$1" \
+    "<dict><key>enabled</key><true/><key>value</key><dict><key>parameters</key><array><integer>$2</integer><integer>$3</integer><integer>1966080</integer></array><key>type</key><string>standard</string></dict></dict>"
+}
+
+# The numeric IDs correspond to macOS window-tiling actions (see https://gist.github.com/stephancasas/2c8e8f71e23ec7221495d7f4b9efb794)
+set_hotkey 237 102 3
+set_hotkey 240 104 4
+set_hotkey 241 108 37
+set_hotkey 242 107 40
+set_hotkey 243 106 38
+set_hotkey 244 119 13
+set_hotkey 245 101 14
+set_hotkey 246 115 1
+set_hotkey 247 100 2
+
+# Reload settings
+/System/Library/PrivateFrameworks/SystemAdministration.framework/Resources/activateSettings -u
+# }}}
