@@ -16,7 +16,10 @@ RUN apt-get update \
     && install --directory --owner=ubuntu --group="${ubuntu_group}" "${ubuntu_home}" \
     && printf '%s\n' 'ubuntu ALL=(ALL) NOPASSWD:ALL' > /etc/sudoers.d/ubuntu \
     && chmod 0440 /etc/sudoers.d/ubuntu \
-    && visudo --check --file=/etc/sudoers.d/ubuntu
+    && visudo --check --file=/etc/sudoers.d/ubuntu \
+    && apt-get clean \
+    && rm -rf /var/lib/apt/lists/*
+
 
 # install-linux uses apt directly. Keep its process running as ubuntu while
 # allowing those package commands to use the temporary sudo configuration.
