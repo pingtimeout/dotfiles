@@ -119,3 +119,8 @@
       versions:
         - latest
       default: latest
+    - plugin: ruby
+      url: https://github.com/asdf-vm/asdf-ruby.git
+      versions:
+        - latest
+      default: latest
