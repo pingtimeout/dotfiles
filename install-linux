@@ -12,18 +12,10 @@ export DEBIAN_FRONTEND=noninteractive
 # }}}
 
 # {{{ Dotbot requires git and Python 3.x
-apt update --yes
-apt install --yes \
+sudo apt update --yes
+sudo apt install --yes \
   git \
   python3
-# }}}
-
-# {{{ Skip Github host SSL confirmation for batch installs
-mkdir -p ~/.ssh
-touch ~/.ssh/known_hosts
-if [ ! -n "$(grep "^github.com " ~/.ssh/known_hosts)" ]; then
-  ssh-keyscan github.com >>~/.ssh/known_hosts 2>/dev/null
-fi
 # }}}
 
 # {{{ Init submodules as some are required dotbot plugins
@@ -40,5 +32,5 @@ zsh -c "'${BASEDIR}/install' --only asdf"
 # }}}
 
 # {{{ Set shell to zsh
-usermod -s /home/linuxbrew/.linuxbrew/bin/zsh $(id --user --name)
+sudo usermod -s /usr/bin/zsh $(id --user --name)
 # }}}
