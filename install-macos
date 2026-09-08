@@ -15,6 +15,39 @@ export DEBIAN_FRONTEND=noninteractive
 git -C "${BASEDIR}" submodule update --init --recursive
 # }}}
 
+# {{{ Install Homebrew
+if command -v brew >/dev/null 2>&1; then
+  echo "Homebrew is already installed, nothing to do"
+else
+  /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+fi
+# }}}
+
+# {{{ Linuxify MacOS but stay on the current shell with the "N" answer
+cd "${BASEDIR}/linuxify"
+./linuxify install <<<"N"
+cd "${BASEDIR}"
+# }}}
+
+# {{{ Install oh-my-zsh
+eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+if [ -d "$HOME/.oh-my-zsh/" ]; then
+  echo "Oh-my-zsh is already installed, nothing to do"
+else
+  (
+    cd /tmp/
+    curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh -o install.sh
+    chmod +x install.sh
+    ./install.sh --unattended
+    rm -f ./install.sh
+  )
+fi
+# }}}
+
+# {{{ Create ~/.config
+mkdir -p ~/.config
+# }}}
+
 # {{{ Delegate the rest to dotbot but exclude asdf at is is not yet installed
 echo First dotbot run...
 "${BASEDIR}/install" --except asdf

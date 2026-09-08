@@ -11,9 +11,10 @@ export HOMEBREW_NO_REQUIRE_TAP_TRUST=1
 export DEBIAN_FRONTEND=noninteractive
 # }}}
 
-# {{{ Dotbot requires git and Python 3.x
+# {{{ Dotbot and Homebrew require curl, git and Python 3.x
 sudo apt update --yes
 sudo apt install --yes \
+  curl \
   git \
   python3
 # }}}
@@ -22,13 +23,40 @@ sudo apt install --yes \
 git -C "${BASEDIR}" submodule update --init --recursive
 # }}}
 
-# {{{ Delegate the rest to dotbot but exclude asdf at is is not yet installed
-"${BASEDIR}/install" --except asdf
+# {{{ Install Homebrew
+if command -v brew >/dev/null 2>&1; then
+  echo "Homebrew is already installed, nothing to do"
+else
+  /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+fi
 # }}}
 
-# {{{ Now invoke dotbot again only for asdf in a new shell to reload the path
+# {{{ Create ~/.config
+mkdir -p ~/.config
+# }}}
+
+# {{{ Delegate the rest to dotbot but exclude asdf at is is not yet installed and links for now
+"${BASEDIR}/install" --except asdf link
+# }}}
+
+# {{{ Install oh-my-zsh
 eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
-zsh -c "'${BASEDIR}/install' --only asdf"
+if [ -d "$HOME/.oh-my-zsh/" ]; then
+  echo "Oh-my-zsh is already installed, nothing to do"
+else
+  (
+    cd /tmp/
+    curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh -o install.sh
+    chmod +x install.sh
+    ./install.sh --unattended
+    rm -f ./install.sh
+  )
+fi
+# }}}
+
+# {{{ Now invoke dotbot again only for asdf and links in a new shell to reload the path
+eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+zsh -c "'${BASEDIR}/install' --only asdf link"
 # }}}
 
 # {{{ Set shell to zsh
