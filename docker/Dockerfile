@@ -45,3 +45,10 @@ RUN rm --force /usr/local/bin/apt /etc/sudoers.d/ubuntu \
     && rm --recursive --force /var/lib/apt/lists/*
 
 USER ubuntu
+
+# Initialize lazyvim
+RUN zsh -lic "nvim --headless \
+  '+Lazy! sync' \
+  '+TSUpdateSync' \
+  '+MasonToolsInstallSync' \
+  +qa"
