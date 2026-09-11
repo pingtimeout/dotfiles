@@ -43,6 +43,7 @@
     - tree-sitter-cli
     - universal-ctags
     - wget
+    - yq
 
 # MacOS specific packages
 - ifmacos:

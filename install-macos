@@ -79,8 +79,8 @@ defaults write com.apple.finder OpenWindowForNewRemovableDisk -bool true
 defaults write NSGlobalDomain ApplePressAndHoldEnabled -bool false
 
 # Set a blazingly fast keyboard repeat rate
-defaults write -g KeyRepeat -int 1
-defaults write -g InitialKeyRepeat -int 20
+defaults write -g KeyRepeat -int 2
+defaults write -g InitialKeyRepeat -int 10
 
 # Show status bar in Finder
 defaults write com.apple.finder ShowStatusBar -bool true
