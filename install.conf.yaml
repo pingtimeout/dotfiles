@@ -80,6 +80,9 @@
     ~/.tmux.conf:
       force: true
       path: tmux.conf
+    ~/.default-npm-packages:
+      force: true
+      path: default-npm-packages
     ~/.zshrc:
       force: true
       path: zshrc
