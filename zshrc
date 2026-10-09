@@ -40,12 +40,6 @@ plugins=(git autojump asdf)
 source $ZSH/oh-my-zsh.sh
 # }}}
 
-# Source Linuxify so that GNU binaries are first in PATH {{{
-if [[ -s "$HOME/.linuxify" ]]; then
-  source "$HOME/.linuxify"
-fi
-# }}}
-
 # Homebrew & asdf {{{
 # Load Homebrew shell integration
 if [ -d /opt/homebrew/ ]
@@ -65,6 +59,13 @@ export HOMEBREW_CASK_OPTS="--appdir=~/Applications"
 # Note that asdf MUST be loaded after homebrew and linuxify so that the provided packages are first in the path.
 export PATH="${ASDF_DATA_DIR:-$HOME/.asdf}/shims:$PATH"
 source ~/.asdf/plugins/java/set-java-home.zsh
+# }}}
+
+# Source Linuxify so that GNU binaries are first in PATH {{{
+# Note that Linuxify needs BREW_HOME so sourcing it has to be after Homebrew is loaded.
+if [[ -s "$HOME/.linuxify" ]]; then
+  source "$HOME/.linuxify"
+fi
 # }}}
 
 # User configuration
