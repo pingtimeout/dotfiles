@@ -136,6 +136,9 @@ tnew() {
   else
     session_name="$1"
   fi
+  pushd ~
+  tmux start-server
+  popd
   tmux new-session -s "$session_name" -c "$PWD"
 }
 # }}}
