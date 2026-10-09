@@ -147,7 +147,10 @@ tnew() {
   pushd ~
   tmux start-server
   popd
-  tmux new-session -s "$session_name" -c "$PWD"
+  tmux new-session -d -s "$session_name" -c "$PWD"
+  kitten @ set-tab-title "tat $session_name"
+  tat $session_name
+  kitten @ set-tab-title
 }
 # }}}
 
