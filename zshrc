@@ -100,7 +100,7 @@ hr () {
 }
 # }}}
 
-# The `mkdirtoday` command creates a folder named after the current date {{{
+# The `mkdirtoday` command creates a folder named after the current date and the touchtoday creates a file {{{
 mkdirtoday() {
   current_date=$(date '+%Y-%m-%d')
   if [ -z "$1" ]; then
@@ -108,6 +108,14 @@ mkdirtoday() {
     return 1
   fi
   mkdir "${current_date}-$1"
+}
+touchtoday() {
+  current_date=$(date '+%Y-%m-%d')
+  if [ -z "$1" ]; then
+    echo "Missing argument: FILE_NAME">&2
+    return 1
+  fi
+  touch "${current_date}-$1"
 }
 # }}}
 
