@@ -172,6 +172,7 @@ alias -g L="| less"
 alias -g LRS='| less -RS'
 
 alias pbc=pbcopy
+alias pwdpbc='pwd | pbcopy'
 alias grip='\grip -b'
 
 alias vim=nvim
