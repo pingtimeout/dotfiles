@@ -162,6 +162,27 @@ thcd() {
 }
 # }}}
 
+# The `claude-sandbox` and `codex-sandbox` functions ensure we pass secrets to sandboxed agents
+claude-sandbox() {
+  export DAP_SKILLS_JENKINS_API_TOKEN=$(security find-generic-password -w -s dap-skills-jenkins-api-token)
+  export DAP_SKILLS_JENKINS_URL=$(security find-generic-password -w -s dap-skills-jenkins-url)
+  export DAP_SKILLS_JENKINS_USER=$(security find-generic-password -w -s dap-skills-jenkins-user)
+  export DAP_SKILLS_JENKINS_EVO_API_TOKEN=$(security find-generic-password -w -s dap-skills-jenkins-evo-api-token)
+  export DAP_SKILLS_JENKINS_EVO_URL=$(security find-generic-password -w -s dap-skills-jenkins-evo-url)
+  export DAP_SKILLS_JENKINS_EVO_USER=$(security find-generic-password -w -s dap-skills-jenkins-evo-user)
+  /Users/plaporte/dremio/projects/coding-agents-sandbox/claude-sandbox $@
+}
+codex-sandbox() {
+  export DAP_SKILLS_JENKINS_API_TOKEN=$(security find-generic-password -w -s dap-skills-jenkins-api-token)
+  export DAP_SKILLS_JENKINS_URL=$(security find-generic-password -w -s dap-skills-jenkins-url)
+  export DAP_SKILLS_JENKINS_USER=$(security find-generic-password -w -s dap-skills-jenkins-user)
+  export DAP_SKILLS_JENKINS_EVO_API_TOKEN=$(security find-generic-password -w -s dap-skills-jenkins-evo-api-token)
+  export DAP_SKILLS_JENKINS_EVO_URL=$(security find-generic-password -w -s dap-skills-jenkins-evo-url)
+  export DAP_SKILLS_JENKINS_EVO_USER=$(security find-generic-password -w -s dap-skills-jenkins-evo-user)
+  /Users/plaporte/dremio/projects/coding-agents-sandbox/codex-sandbox $@
+}
+# }}}
+
 # Other aliases {{{
 # Should be created AFTER oh-my-zsh has been loaded so that those ones override the oh-my-zsh defaults
 
