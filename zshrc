@@ -181,6 +181,15 @@ codex-sandbox() {
   export DAP_SKILLS_JENKINS_EVO_USER=$(security find-generic-password -w -s dap-skills-jenkins-evo-user)
   $HOME/perso/projects/coding-agents-sandbox/codex-sandbox $@
 }
+codex-yolo() {
+  export DAP_SKILLS_JENKINS_API_TOKEN=$(security find-generic-password -w -s dap-skills-jenkins-api-token)
+  export DAP_SKILLS_JENKINS_URL=$(security find-generic-password -w -s dap-skills-jenkins-url)
+  export DAP_SKILLS_JENKINS_USER=$(security find-generic-password -w -s dap-skills-jenkins-user)
+  export DAP_SKILLS_JENKINS_EVO_API_TOKEN=$(security find-generic-password -w -s dap-skills-jenkins-evo-api-token)
+  export DAP_SKILLS_JENKINS_EVO_URL=$(security find-generic-password -w -s dap-skills-jenkins-evo-url)
+  export DAP_SKILLS_JENKINS_EVO_USER=$(security find-generic-password -w -s dap-skills-jenkins-evo-user)
+  codex --yolo --no-daemon $@
+}
 # }}}
 
 # Other aliases {{{
