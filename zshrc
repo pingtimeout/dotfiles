@@ -184,33 +184,38 @@ thcd() {
 }
 # }}}
 
-# The `claude-sandbox` and `codex-sandbox` functions ensure we pass secrets to sandboxed agents
-claude-sandbox() {
-  export DAP_SKILLS_JENKINS_API_TOKEN=$(security find-generic-password -w -s dap-skills-jenkins-api-token)
-  export DAP_SKILLS_JENKINS_URL=$(security find-generic-password -w -s dap-skills-jenkins-url)
-  export DAP_SKILLS_JENKINS_USER=$(security find-generic-password -w -s dap-skills-jenkins-user)
-  export DAP_SKILLS_JENKINS_EVO_API_TOKEN=$(security find-generic-password -w -s dap-skills-jenkins-evo-api-token)
-  export DAP_SKILLS_JENKINS_EVO_URL=$(security find-generic-password -w -s dap-skills-jenkins-evo-url)
-  export DAP_SKILLS_JENKINS_EVO_USER=$(security find-generic-password -w -s dap-skills-jenkins-evo-user)
-  $HOME/perso/projects/coding-agents-sandbox/claude-sandbox $@
+# The `claude-generic` and `codex-generic` functions ensure we pass secrets to agents and locate them in a temporary directory for generic questions (unrelated to specific projects) {{{
+load-dap-env() {
+  export DAP_SKILLS_JENKINS_API_TOKEN=$(security find-generic-password -w -s dap-skills-jenkins-api-token 2>/dev/null)
+  export DAP_SKILLS_JENKINS_URL=$(security find-generic-password -w -s dap-skills-jenkins-url 2>/dev/null)
+  export DAP_SKILLS_JENKINS_USER=$(security find-generic-password -w -s dap-skills-jenkins-user 2>/dev/null)
+  export DAP_SKILLS_JENKINS_EVO_API_TOKEN=$(security find-generic-password -w -s dap-skills-jenkins-evo-api-token 2>/dev/null)
+  export DAP_SKILLS_JENKINS_EVO_URL=$(security find-generic-password -w -s dap-skills-jenkins-evo-url 2>/dev/null)
+  export DAP_SKILLS_JENKINS_EVO_USER=$(security find-generic-password -w -s dap-skills-jenkins-evo-user 2>/dev/null)
 }
-codex-sandbox() {
-  export DAP_SKILLS_JENKINS_API_TOKEN=$(security find-generic-password -w -s dap-skills-jenkins-api-token)
-  export DAP_SKILLS_JENKINS_URL=$(security find-generic-password -w -s dap-skills-jenkins-url)
-  export DAP_SKILLS_JENKINS_USER=$(security find-generic-password -w -s dap-skills-jenkins-user)
-  export DAP_SKILLS_JENKINS_EVO_API_TOKEN=$(security find-generic-password -w -s dap-skills-jenkins-evo-api-token)
-  export DAP_SKILLS_JENKINS_EVO_URL=$(security find-generic-password -w -s dap-skills-jenkins-evo-url)
-  export DAP_SKILLS_JENKINS_EVO_USER=$(security find-generic-password -w -s dap-skills-jenkins-evo-user)
-  $HOME/perso/projects/coding-agents-sandbox/codex-sandbox $@
+
+codex() {
+  load-dap-env
+  command codex "$@"
 }
-codex-yolo() {
-  export DAP_SKILLS_JENKINS_API_TOKEN=$(security find-generic-password -w -s dap-skills-jenkins-api-token)
-  export DAP_SKILLS_JENKINS_URL=$(security find-generic-password -w -s dap-skills-jenkins-url)
-  export DAP_SKILLS_JENKINS_USER=$(security find-generic-password -w -s dap-skills-jenkins-user)
-  export DAP_SKILLS_JENKINS_EVO_API_TOKEN=$(security find-generic-password -w -s dap-skills-jenkins-evo-api-token)
-  export DAP_SKILLS_JENKINS_EVO_URL=$(security find-generic-password -w -s dap-skills-jenkins-evo-url)
-  export DAP_SKILLS_JENKINS_EVO_USER=$(security find-generic-password -w -s dap-skills-jenkins-evo-user)
-  codex --yolo --no-daemon $@
+
+claude() {
+  load-dap-env
+  command claude "$@"
+}
+
+claude-generic() {
+  mkdir -p /tmp/test
+  pushd /tmp/test
+  claude "$@"
+  popd
+}
+
+codex-generic() {
+  mkdir -p /tmp/test
+  pushd /tmp/test
+  codex "$@"
+  popd
 }
 # }}}
 
