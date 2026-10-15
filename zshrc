@@ -170,7 +170,7 @@ claude-sandbox() {
   export DAP_SKILLS_JENKINS_EVO_API_TOKEN=$(security find-generic-password -w -s dap-skills-jenkins-evo-api-token)
   export DAP_SKILLS_JENKINS_EVO_URL=$(security find-generic-password -w -s dap-skills-jenkins-evo-url)
   export DAP_SKILLS_JENKINS_EVO_USER=$(security find-generic-password -w -s dap-skills-jenkins-evo-user)
-  /Users/plaporte/dremio/projects/coding-agents-sandbox/claude-sandbox $@
+  $HOME/perso/projects/coding-agents-sandbox/claude-sandbox $@
 }
 codex-sandbox() {
   export DAP_SKILLS_JENKINS_API_TOKEN=$(security find-generic-password -w -s dap-skills-jenkins-api-token)
@@ -179,7 +179,7 @@ codex-sandbox() {
   export DAP_SKILLS_JENKINS_EVO_API_TOKEN=$(security find-generic-password -w -s dap-skills-jenkins-evo-api-token)
   export DAP_SKILLS_JENKINS_EVO_URL=$(security find-generic-password -w -s dap-skills-jenkins-evo-url)
   export DAP_SKILLS_JENKINS_EVO_USER=$(security find-generic-password -w -s dap-skills-jenkins-evo-user)
-  /Users/plaporte/dremio/projects/coding-agents-sandbox/codex-sandbox $@
+  $HOME/perso/projects/coding-agents-sandbox/codex-sandbox $@
 }
 # }}}
 
