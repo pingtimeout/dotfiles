@@ -162,7 +162,7 @@ thcd() {
 }
 # }}}
 
-# The `claude-sandbox` and `codex-sandbox` functions ensure we pass secrets to sandboxed agents
+# The `claude-sandbox` and `codex-sandbox` functions ensure we pass secrets to sandboxed agents {{{
 claude-sandbox() {
   export DAP_SKILLS_JENKINS_API_TOKEN=$(security find-generic-password -w -s dap-skills-jenkins-api-token)
   export DAP_SKILLS_JENKINS_URL=$(security find-generic-password -w -s dap-skills-jenkins-url)
@@ -190,6 +190,18 @@ codex-yolo() {
   export DAP_SKILLS_JENKINS_EVO_USER=$(security find-generic-password -w -s dap-skills-jenkins-evo-user)
   codex --yolo --no-daemon $@
 }
+# }}}
+
+# The `noema-serve` function quickly starts a noema server in foreground {{{
+noema-serve() {
+  noema serve \
+    --cortex my-cortex \
+    --transport http \
+    --host 127.0.0.1 \
+    --port 3000 \
+    --log-stderr
+}
+# }}}
 # }}}
 
 # Other aliases {{{
