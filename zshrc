@@ -250,3 +250,8 @@ open() {
   fi
 }
 # }}}
+
+# Enable autocompletions {{{
+fpath+=(~/.zfunc)
+autoload -Uz compinit && compinit
+# }}}
