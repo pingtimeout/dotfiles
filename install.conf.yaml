@@ -5,6 +5,7 @@
 - clean: ["~"]
 
 - tap:
+    - Fail-Safe/tap
     - yoanbernabeu/tap
 
 - brew:
@@ -32,6 +33,7 @@
     - kubernetes-cli
     - lazygit
     - nvim
+    - noema
     - pandoc
     - parallel
     - pipx
