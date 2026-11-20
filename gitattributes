@@ -1,2 +1,5 @@
 *.yaml diff=dyff
 *.yml diff=dyff
+
+# Helm templates can contain Go template expressions, so use Git's text diff.
+helm/**/templates/** diff
