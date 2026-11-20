@@ -55,17 +55,17 @@ eval "$($BREW_HOME/bin/brew shellenv)"
 # That way, homebrew does not require root privileges.
 export HOMEBREW_CASK_OPTS="--appdir=~/Applications"
 
-# Load asdf and ensure runtimes are available and set JAVA_HOME
-# Note that asdf MUST be loaded after homebrew and linuxify so that the provided packages are first in the path.
-export PATH="${ASDF_DATA_DIR:-$HOME/.asdf}/shims:$PATH"
-source ~/.asdf/plugins/java/set-java-home.zsh
-# }}}
-
 # Source Linuxify so that GNU binaries are first in PATH {{{
 # Note that Linuxify needs BREW_HOME so sourcing it has to be after Homebrew is loaded.
 if [[ -s "$HOME/.linuxify" ]]; then
   source "$HOME/.linuxify"
 fi
+# }}}
+
+# Load asdf and ensure runtimes are available and set JAVA_HOME
+# Note that asdf MUST be loaded after homebrew and linuxify so that the provided packages are first in the path.
+export PATH="${ASDF_DATA_DIR:-$HOME/.asdf}/shims:$PATH"
+source ~/.asdf/plugins/java/set-java-home.zsh
 # }}}
 
 # User configuration
