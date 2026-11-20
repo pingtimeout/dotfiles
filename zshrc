@@ -137,7 +137,27 @@ git-fetch-pr() {
 
 # The `tnew` and `tat` functions creates/attach to a tmux session {{{
 alias tls='tmux ls'
-alias tat='tmux attach -t'
+tat() {
+  if [ -z "$1" ]
+  then
+    session_name=$(tmux ls -F '#S' | head -n 1)
+  else
+    session_name="$1"
+  fi
+
+  kitten @ set-tab-title tmux
+
+  client_tty=$(tty)
+  tmux attach-session -t "$session_name" &
+  until tmux list-clients -F '#{client_tty}' | grep -Fxq "$client_tty"; do
+    echo -n .
+    sleep 0.1
+  done
+  tmux send-keys -K -c "$client_tty" M-Tab
+  fg
+
+  kitten @ set-tab-title
+}
 tnew() {
   if [ -z "$1" ]
   then
@@ -149,9 +169,11 @@ tnew() {
   tmux start-server
   popd
   tmux new-session -d -s "$session_name" -c "$PWD"
-  kitten @ set-tab-title "tat $session_name"
-  tat $session_name
-  kitten @ set-tab-title
+  echo ""
+  PURPLE='\033[0;35m'
+  NO_COLOR='\033[0m' # No Color
+  echo " ${PURPLE} Tmux session created in background, now go to multiplexer-sidebar ${NO_COLOR}"
+  echo ""
 }
 # }}}
 
