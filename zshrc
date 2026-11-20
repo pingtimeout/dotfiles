@@ -203,7 +203,7 @@ alias -g LRS='| less -RS'
 
 alias pbc=pbcopy
 alias pwdpbc='pwd | pbcopy'
-alias grip='\grip -b'
+alias grip='echo NOPE, use "npx mdts"'
 
 alias vim=nvim
 alias ls='ls --group-directories-first --color=auto --hyperlink=auto'
@@ -216,9 +216,10 @@ autoload -Uz edit-command-line
 zle -N edit-command-line
 bindkey '^G' edit-command-line
 
-# Ensure that pipx executables are accessible {{{
+# Ensure that pipx and cargo executables are accessible {{{
 if [ -d ~/.local/bin ]; then
     export PATH="$PATH:$HOME/.local/bin"
+    export PATH="$PATH:$HOME/.cargo/bin"
 fi
 # }}}
 
